@@ -58,6 +58,30 @@ export default function WebsiteAssembly() {
   const labelOpacity = useTransform(scrollYProgress, [0, 0.08, 0.25], [1, 1, 0]);
   const labelY       = useTransform(scrollYProgress, [0, 0.25], [0, -30]);
 
+  // ── Glass prism objects ───────────────────────────────────────────────────
+  // Triangular prism — drops first, brand hero
+  const triY       = useTransform(scrollYProgress, [0.18, 0.46], [-280, 0]);
+  const triRotate  = useTransform(scrollYProgress, [0.18, 0.46], [-8, 0]);
+  const triOpacity = useTransform(scrollYProgress, [0.18, 0.30], [0, 1]);
+
+  // Tall rectangle
+  const rectY       = useTransform(scrollYProgress, [0.28, 0.54], [-320, 0]);
+  const rectRotate  = useTransform(scrollYProgress, [0.28, 0.54], [5, 0]);
+  const rectOpacity = useTransform(scrollYProgress, [0.28, 0.40], [0, 1]);
+
+  // Small cube
+  const cubeY       = useTransform(scrollYProgress, [0.34, 0.58], [-240, 0]);
+  const cubeRotate  = useTransform(scrollYProgress, [0.34, 0.58], [-3, 0]);
+  const cubeOpacity = useTransform(scrollYProgress, [0.34, 0.46], [0, 1]);
+
+  // Sphere
+  const sphereY       = useTransform(scrollYProgress, [0.40, 0.64], [-260, 0]);
+  const sphereOpacity = useTransform(scrollYProgress, [0.40, 0.52], [0, 1]);
+
+  // Rainbow light + scene zoom
+  const rainbowOpacity = useTransform(scrollYProgress, [0.50, 0.80], [0, 1]);
+  const sceneScale     = useTransform(scrollYProgress, [0.60, 0.90], [1, 1.06]);
+
   return (
     /* Scroll container — 3× viewport gives scroll room for the animation */
     <div ref={containerRef} className="relative h-[280vh]">
