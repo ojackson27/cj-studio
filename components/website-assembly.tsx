@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useId } from "react";
 import {
   motion,
   useScroll,
@@ -11,6 +11,7 @@ import {
 export default function WebsiteAssembly() {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const uid = useId();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -81,6 +82,12 @@ export default function WebsiteAssembly() {
   // Rainbow light + scene zoom
   const rainbowOpacity = useTransform(scrollYProgress, [0.50, 0.80], [0, 1]);
   const sceneScale     = useTransform(scrollYProgress, [0.60, 0.90], [1, 1.06]);
+
+  const rainbowBg = [
+    "radial-gradient(ellipse at 30% 100%, rgba(253,164,175,0.22) 0%, transparent 50%)",
+    "radial-gradient(ellipse at 52% 100%, rgba(196,181,253,0.18) 0%, transparent 45%)",
+    "radial-gradient(ellipse at 74% 100%, rgba(147,197,253,0.15) 0%, transparent 40%)",
+  ].join(", ");
 
   return (
     /* Scroll container — 3× viewport gives scroll room for the animation */
@@ -286,7 +293,7 @@ export default function WebsiteAssembly() {
             >
               <svg width="90" height="99" viewBox="0 0 100 110" fill="none" aria-hidden="true">
                 <defs>
-                  <linearGradient id="triGrad" x1="0" y1="0" x2="100" y2="87" gradientUnits="userSpaceOnUse">
+                  <linearGradient id={`triGrad-${uid}`} x1="0" y1="0" x2="100" y2="87" gradientUnits="userSpaceOnUse">
                     <stop offset="0%"   stopColor="#f472b6" stopOpacity="0.55" />
                     <stop offset="50%"  stopColor="#a78bfa" stopOpacity="0.55" />
                     <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.55" />
@@ -294,7 +301,7 @@ export default function WebsiteAssembly() {
                 </defs>
                 <polygon
                   points="50,4 96,87 4,87"
-                  fill="url(#triGrad)"
+                  fill={`url(#triGrad-${uid})`}
                   stroke="rgba(255,255,255,0.6)"
                   strokeWidth="1.5"
                 />
@@ -351,21 +358,8 @@ export default function WebsiteAssembly() {
             <motion.div
               style={
                 reduce
-                  ? {
-                      background: [
-                        "radial-gradient(ellipse at 30% 100%, rgba(253,164,175,0.22) 0%, transparent 50%)",
-                        "radial-gradient(ellipse at 52% 100%, rgba(196,181,253,0.18) 0%, transparent 45%)",
-                        "radial-gradient(ellipse at 74% 100%, rgba(147,197,253,0.15) 0%, transparent 40%)",
-                      ].join(", "),
-                    }
-                  : {
-                      opacity: rainbowOpacity,
-                      background: [
-                        "radial-gradient(ellipse at 30% 100%, rgba(253,164,175,0.22) 0%, transparent 50%)",
-                        "radial-gradient(ellipse at 52% 100%, rgba(196,181,253,0.18) 0%, transparent 45%)",
-                        "radial-gradient(ellipse at 74% 100%, rgba(147,197,253,0.15) 0%, transparent 40%)",
-                      ].join(", "),
-                    }
+                  ? { background: rainbowBg }
+                  : { opacity: rainbowOpacity, background: rainbowBg }
               }
               className="absolute bottom-0 left-0 right-0 h-[32%]"
               aria-hidden="true"
