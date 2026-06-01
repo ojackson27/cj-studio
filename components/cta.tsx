@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowRight, EnvelopeSimple, Phone } from "@phosphor-icons/react";
+import { ArrowRight, EnvelopeSimple } from "@phosphor-icons/react";
 import AnimatedButton from "./animated-button";
 
 export default function CTA() {
@@ -62,9 +62,8 @@ export default function CTA() {
               </motion.span>
             </AnimatedButton>
 
-            <AnimatedButton href="tel:+447700000000" variant="outline">
-              <Phone size={16} />
-              Call us
+            <AnimatedButton href="/work" variant="outline">
+              See our work
             </AnimatedButton>
           </motion.div>
         </div>

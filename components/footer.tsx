@@ -15,9 +15,11 @@ export default function Footer() {
 
         <div className="flex items-center gap-5 flex-wrap justify-center">
           {[
-            { label: "Work", href: "/#work" },
-            { label: "Services", href: "/#services" },
-            { label: "Contact", href: "/contact" },
+            { label: "Work",     href: "/work" },
+            { label: "Services", href: "/services" },
+            { label: "Process",  href: "/process" },
+            { label: "Founders", href: "/founders" },
+            { label: "Contact",  href: "/contact" },
           ].map(({ label, href }) => (
             <Link
               key={label}

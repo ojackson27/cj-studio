@@ -53,7 +53,7 @@ export default function WebsiteAssembly({ scrollYProgress }: Props) {
 
   return (
     <div
-      className="sticky top-0 h-screen w-full z-0 overflow-hidden bg-white"
+      className="sticky top-0 h-screen w-full z-0 overflow-hidden sm:bg-white"
       style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
     >
       <motion.div
@@ -62,7 +62,7 @@ export default function WebsiteAssembly({ scrollYProgress }: Props) {
         aria-label="Website assembly animation"
       >
 
-        {/* Photo canvas — project image in a clean frame */}
+        {/* Photo canvas — desktop/tablet only; aurora bg looks great on mobile */}
         <motion.div
           style={
             reduce
@@ -74,7 +74,7 @@ export default function WebsiteAssembly({ scrollYProgress }: Props) {
                   aspectRatio: "900 / 560",
                 }
           }
-          className="relative rounded-2xl overflow-hidden border border-gray-200/80"
+          className="relative rounded-2xl overflow-hidden border border-gray-200/80 hidden sm:block"
         >
           <Image
             src={projects[0].img}
@@ -84,7 +84,8 @@ export default function WebsiteAssembly({ scrollYProgress }: Props) {
             priority
             sizes="min(900px, 90vw)"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/10" />
+          {/* Overlay — stronger on mobile so text stays readable over the canvas */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/10 to-white/80 md:from-white/40 md:via-transparent md:to-white/40" />
         </motion.div>
 
         {/* Foreground glass objects — hidden on mobile, pointer-events-none */}
@@ -93,38 +94,38 @@ export default function WebsiteAssembly({ scrollYProgress }: Props) {
           {/* Triangular prism — drops first, centre */}
           <motion.div
             style={reduce ? {} : { y: triY, rotate: triRotate, opacity: triOpacity }}
-            className="absolute left-1/2 bottom-[22%] -translate-x-1/2"
+            className="absolute left-1/2 bottom-[18%] -translate-x-1/2"
           >
-            <svg width="90" height="99" viewBox="0 0 100 110" fill="none" aria-hidden="true">
+            <svg width="160" height="176" viewBox="0 0 100 110" fill="none" aria-hidden="true">
               <defs>
                 <linearGradient id={`triGrad-${uid}`} x1="0" y1="0" x2="100" y2="87" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%"   stopColor="#f472b6" stopOpacity="0.55" />
-                  <stop offset="50%"  stopColor="#a78bfa" stopOpacity="0.55" />
-                  <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.55" />
+                  <stop offset="0%"   stopColor="#f472b6" stopOpacity="0.60" />
+                  <stop offset="50%"  stopColor="#a78bfa" stopOpacity="0.60" />
+                  <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.60" />
                 </linearGradient>
               </defs>
               <polygon
                 points="50,4 96,87 4,87"
                 fill={`url(#triGrad-${uid})`}
-                stroke="rgba(255,255,255,0.6)"
-                strokeWidth="1.5"
+                stroke="rgba(255,255,255,0.7)"
+                strokeWidth="1.2"
               />
-              <polygon points="50,30 72,72 28,72" fill="rgba(255,255,255,0.35)" />
+              <polygon points="50,30 72,72 28,72" fill="rgba(255,255,255,0.40)" />
             </svg>
           </motion.div>
 
           {/* Tall rectangle — left-centre */}
           <motion.div
             style={reduce ? {} : { y: rectY, rotate: rectRotate, opacity: rectOpacity }}
-            className="absolute left-[29%] bottom-[28%]"
+            className="absolute left-[27%] bottom-[25%]"
           >
             <div
-              className="w-9 rounded-md border backdrop-blur-md"
+              className="w-16 rounded-xl border-2 backdrop-blur-md"
               style={{
-                height: "72px",
-                background: "linear-gradient(160deg, rgba(196,181,253,0.4), rgba(147,197,253,0.35))",
-                borderColor: "rgba(255,255,255,0.55)",
-                boxShadow: "0 4px 20px rgba(167,139,250,0.2)",
+                height: "128px",
+                background: "linear-gradient(160deg, rgba(196,181,253,0.45), rgba(147,197,253,0.38))",
+                borderColor: "rgba(255,255,255,0.60)",
+                boxShadow: "0 8px 32px rgba(167,139,250,0.25)",
               }}
             />
           </motion.div>
@@ -132,13 +133,14 @@ export default function WebsiteAssembly({ scrollYProgress }: Props) {
           {/* Small cube — far left */}
           <motion.div
             style={reduce ? {} : { y: cubeY, rotate: cubeRotate, opacity: cubeOpacity }}
-            className="absolute left-[19%] bottom-[28%]"
+            className="absolute left-[15%] bottom-[26%]"
           >
             <div
-              className="w-8 h-8 rounded border backdrop-blur-md"
+              className="w-14 h-14 rounded-xl border-2 backdrop-blur-md"
               style={{
-                background: "linear-gradient(135deg, rgba(110,231,183,0.4), rgba(96,165,250,0.35))",
-                borderColor: "rgba(255,255,255,0.55)",
+                background: "linear-gradient(135deg, rgba(110,231,183,0.45), rgba(96,165,250,0.38))",
+                borderColor: "rgba(255,255,255,0.60)",
+                boxShadow: "0 6px 24px rgba(96,165,250,0.20)",
               }}
             />
           </motion.div>
@@ -146,14 +148,14 @@ export default function WebsiteAssembly({ scrollYProgress }: Props) {
           {/* Sphere — right */}
           <motion.div
             style={reduce ? {} : { y: sphereY, opacity: sphereOpacity }}
-            className="absolute right-[23%] bottom-[27%]"
+            className="absolute right-[20%] bottom-[24%]"
           >
             <div
-              className="w-11 h-11 rounded-full border"
+              className="w-20 h-20 rounded-full border-2"
               style={{
-                background: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.6), rgba(196,181,253,0.35) 60%, rgba(147,197,253,0.2))",
-                borderColor: "rgba(255,255,255,0.6)",
-                boxShadow: "0 4px 20px rgba(253,164,175,0.25)",
+                background: "radial-gradient(circle at 35% 35%, rgba(253,164,175,0.65), rgba(196,181,253,0.40) 60%, rgba(147,197,253,0.22))",
+                borderColor: "rgba(255,255,255,0.65)",
+                boxShadow: "0 8px 32px rgba(253,164,175,0.30)",
               }}
             />
           </motion.div>

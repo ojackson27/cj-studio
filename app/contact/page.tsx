@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import ContactForm from "@/components/contact-form";
-import { EnvelopeSimple, Phone } from "@phosphor-icons/react/dist/ssr";
+import { EnvelopeSimple } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata: Metadata = {
   title: "Contact | CJ Studio",
@@ -39,15 +39,6 @@ export default function ContactPage() {
                     <EnvelopeSimple size={16} className="text-gray-500 group-hover:text-purple-500 transition-colors" />
                   </div>
                   hello@cjstudio.co.uk
-                </a>
-                <a
-                  href="tel:+447700000000"
-                  className="flex items-center gap-3 text-[15px] text-gray-600 hover:text-gray-900 transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-gray-100 group-hover:bg-purple-50 flex items-center justify-center transition-colors">
-                    <Phone size={16} className="text-gray-500 group-hover:text-purple-500 transition-colors" />
-                  </div>
-                  Add your number here
                 </a>
               </div>
 
