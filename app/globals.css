@@ -68,3 +68,9 @@ body::before {
   filter: blur(10px) invert(1);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .aurora-gradient {
+    animation: none;
+  }
+}
+
