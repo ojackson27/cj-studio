@@ -73,8 +73,9 @@ Human-led, with Claude assisting on copy and moodboard generation. The output of
 - Pull 5–10 reference screenshots from Mobbin and/or Awwwards
 - Build brand kit in Canva Pro (logo variations, colour swatches, social assets)
 
-### Claude-assisted tasks:
-- Generate moodboard description and design language from client's reference sites (Q5)
+### Claude-assisted tasks (via MCP tools):
+- **Automated inspiration pull:** Claude queries Dribbble and Behance via custom MCP tools using the assigned track type + keywords from the brief. Returns 10–15 tagged reference shots across both platforms. Human reviews and selects which to lock in as reference.
+- Generate moodboard description and design language from selected references + client's Q5 sites
 - Suggest page structure for the assigned track
 - Draft copy for key sections from the completed brief
 - Generate Midjourney prompts for hero images if photography is unavailable
@@ -147,6 +148,8 @@ Execution uses the subagent-driven approach: one fresh subagent per component, s
 | Awwwards | Premium animated site references — the quality benchmark |
 | Mobbin | Real UI screenshots sorted by industry |
 | SiteInspire | Curated inspiration by style |
+| Dribbble API (MCP) | Automated inspiration pull — search shots by track keywords, returns 10–15 tagged references |
+| Behance API (MCP) | Automated inspiration pull — stronger for branding, creative, and professional services |
 | Relume.io | AI-generated sitemaps and wireframes for planning |
 | Midjourney | Hero image generation, mood boards, abstract backgrounds |
 | Remove.bg | Background removal from client product/business photos |
@@ -226,6 +229,19 @@ Each track playbook (`tracks/[type].md`) contains five sections in this order:
 | Per-section demo approval | During Phase 3 | Client |
 | Final localhost review | End of Phase 4 | Ollie or Josh |
 | Final sign-off | End of Phase 5 | Client |
+
+---
+
+## MCP Tools Required
+
+Two custom MCP servers need to be built as part of this workflow implementation:
+
+| MCP Server | API | Auth | What it does |
+|---|---|---|---|
+| `dribbble-mcp` | Dribbble API v2 | OAuth 2.0 client credentials | Search shots by tag/keyword, return title + image URL + designer + tags |
+| `behance-mcp` | Adobe Behance API | API key | Search projects by field/keyword, return title + cover image + category |
+
+Both are called in Phase 1 with a standard prompt: track type + 3–5 keywords derived from the client brief. Output is reviewed by Ollie/Josh before references are locked in. Neither replaces human curation — they replace manual browsing.
 
 ---
 
