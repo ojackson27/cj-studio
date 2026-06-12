@@ -1,0 +1,107 @@
+<h2>WebsiteAssembly — 3D Prism Scene Design</h2>
+<p class="subtitle">Front-facing glass prisms fall in front of the browser mock on scroll. Does this look right?</p>
+
+<div class="section">
+  <h3>Scene structure</h3>
+  <p>Same 280vh scroll container and sticky viewport as today. Two layers:</p>
+  <ul>
+    <li><strong>Background:</strong> The existing browser mock, slightly scaled down (~85%) and pushed back — acts as the "monitor" in the scene</li>
+    <li><strong>Foreground:</strong> 4 glass prism objects positioned in front, falling in from above as you scroll</li>
+  </ul>
+
+  <div class="mockup" style="margin-top:16px">
+    <div class="mockup-header">Scene layout (front-facing, scroll progress ~0.7)</div>
+    <div class="mockup-body" style="background:#fafafa;min-height:320px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+      <!-- Aurora bg -->
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 30%,rgba(251,113,133,0.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 70%,rgba(196,181,253,0.12) 0%,transparent 50%)"></div>
+
+      <!-- Browser mock (background layer) -->
+      <div style="position:absolute;width:72%;max-width:480px;aspect-ratio:900/560;background:white;border-radius:12px;border:1px solid #e5e7eb;box-shadow:0 8px 32px rgba(0,0,0,0.08);opacity:0.9;overflow:hidden;">
+        <div style="height:28px;background:#f9fafb;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:6px;padding:0 12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#f87171;opacity:0.8"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#fbbf24;opacity:0.8"></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#34d399;opacity:0.8"></div>
+          <div style="flex:1;margin:0 8px;height:14px;background:white;border-radius:8px;border:1px solid #e5e7eb;display:flex;align-items:center;padding:0 8px;">
+            <span style="font-size:8px;color:#9ca3af;">cjstudio.co.uk</span>
+          </div>
+        </div>
+        <div style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="grid-column:1/-1;height:24px;background:linear-gradient(90deg,#111827 0%,#1f2937 100%);border-radius:6px;display:flex;align-items:center;padding:0 10px;justify-content:space-between;">
+            <span style="font-size:7px;color:white;font-weight:600;">CJ Studio</span>
+            <span style="font-size:7px;color:#9ca3af;">Work · Services · Contact</span>
+          </div>
+          <div style="grid-column:1/-1;padding:12px 0 4px;">
+            <div style="font-size:11px;font-weight:700;color:#111827;line-height:1.2;">Websites built to <span style="background:linear-gradient(135deg,#fb7185,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">stand out.</span></div>
+            <div style="font-size:7px;color:#6b7280;margin-top:4px;">Fast, modern websites for UK businesses.</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#fdf2f8,#faf5ff);border-radius:8px;padding:8px;border:1px solid rgba(255,255,255,0.7);">
+            <div style="font-size:7px;font-weight:600;color:#111827;">Design</div>
+            <div style="font-size:6px;color:#6b7280;margin-top:2px;">Tailored to your brand</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#eff6ff,#ecfdf5);border-radius:8px;padding:8px;border:1px solid rgba(255,255,255,0.7);">
+            <div style="font-size:7px;font-weight:600;color:#111827;">Build</div>
+            <div style="font-size:6px;color:#6b7280;margin-top:2px;">Fast &amp; SEO-ready</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Foreground glass objects -->
+      <!-- Triangular prism (hero, centre) -->
+      <div style="position:absolute;bottom:28%;left:50%;transform:translateX(-50%);">
+        <svg width="80" height="88" viewBox="0 0 100 110" fill="none">
+          <defs>
+            <linearGradient id="dg1" x1="0" y1="0" x2="100" y2="87" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#f472b6" stop-opacity="0.55"/>
+              <stop offset="50%" stop-color="#a78bfa" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.55"/>
+            </linearGradient>
+          </defs>
+          <polygon points="50,4 96,87 4,87" fill="url(#dg1)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+          <polygon points="50,28 72,72 28,72" fill="rgba(255,255,255,0.35)"/>
+        </svg>
+      </div>
+
+      <!-- Tall rectangle (left) -->
+      <div style="position:absolute;bottom:30%;left:28%;width:36px;height:72px;background:linear-gradient(160deg,rgba(196,181,253,0.4),rgba(147,197,253,0.35));border:1px solid rgba(255,255,255,0.55);border-radius:6px;backdrop-filter:blur(8px);box-shadow:0 4px 20px rgba(167,139,250,0.2)"></div>
+
+      <!-- Sphere (right) -->
+      <div style="position:absolute;bottom:28%;right:24%;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(253,164,175,0.6),rgba(196,181,253,0.35) 60%,rgba(147,197,253,0.2));border:1px solid rgba(255,255,255,0.6);box-shadow:0 4px 20px rgba(253,164,175,0.25)"></div>
+
+      <!-- Small cube (far left) -->
+      <div style="position:absolute;bottom:28%;left:18%;width:30px;height:30px;background:linear-gradient(135deg,rgba(110,231,183,0.4),rgba(96,165,250,0.35));border:1px solid rgba(255,255,255,0.55);border-radius:4px;backdrop-filter:blur(8px)"></div>
+
+      <!-- Rainbow light overlay -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:radial-gradient(ellipse at 30% 100%,rgba(253,164,175,0.2) 0%,transparent 50%),radial-gradient(ellipse at 60% 100%,rgba(196,181,253,0.18) 0%,transparent 45%),radial-gradient(ellipse at 80% 100%,rgba(147,197,253,0.15) 0%,transparent 40%);pointer-events:none"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Animation timing (scroll progress 0 → 1)</h3>
+  <div style="font-family:monospace;font-size:12px;line-height:1.8;background:#f9fafb;padding:16px;border-radius:8px;border:1px solid #e5e7eb;">
+    <div><span style="color:#a78bfa">0.00 → 0.08</span>  Section label visible ("How we work")</div>
+    <div><span style="color:#a78bfa">0.05 → 0.22</span>  Browser mock fades &amp; scales in (background)</div>
+    <div><span style="color:#f472b6">0.18 → 0.46</span>  Triangular prism drops first — y: -280px → 0, rotateZ: -8 → 0</div>
+    <div><span style="color:#60a5fa">0.28 → 0.54</span>  Tall rectangle drops — y: -320px → 0, rotateZ: 5 → 0</div>
+    <div><span style="color:#34d399">0.34 → 0.58</span>  Small cube drops — y: -240px → 0, rotateZ: -3 → 0</div>
+    <div><span style="color:#f97316">0.40 → 0.64</span>  Sphere drops last — y: -260px → 0</div>
+    <div><span style="color:#a78bfa">0.50 → 0.80</span>  Rainbow light overlay fades in at bottom</div>
+    <div><span style="color:#6b7280">0.60 → 0.90</span>  Subtle scene scale up (1.0 → 1.06) — zoom feel</div>
+    <div><span style="color:#6b7280">0.80 → 1.00</span>  Hold final state</div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Glass styling per object</h3>
+  <ul>
+    <li><strong>Triangular prism:</strong> SVG polygon with brand gradient fill at ~55% opacity, white inner cutout, white/60 stroke border</li>
+    <li><strong>Tall rectangle:</strong> Lavender→sky blue gradient, backdrop-blur, white/55 border, subtle purple glow shadow</li>
+    <li><strong>Sphere:</strong> Radial gradient (rose→lavender→sky), white/60 border, pink glow shadow</li>
+    <li><strong>Small cube:</strong> Mint→sky gradient, backdrop-blur, white/55 border</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h3>Reduced motion fallback</h3>
+  <p>All 4 objects render in their final positions immediately. Browser mock fully visible. No transforms applied. Zero JS overhead.</p>
+</div>

@@ -1,0 +1,59 @@
+<h2>Three Ways to Structure the Workflow</h2>
+<p class="subtitle">Pick the architecture before we write any of it — each has a different shape when handed to a Claude agent</p>
+
+<div class="options" style="flex-direction: column; gap: 16px;">
+
+  <div class="option" data-choice="a" onclick="toggleSelect(this)" style="align-items: flex-start; padding: 20px;">
+    <div class="letter">A</div>
+    <div class="content" style="width: 100%;">
+      <h3>One Big Decision Tree</h3>
+      <p>A single Markdown document — one long flow from "client enquiry received" all the way to Vercel deploy. Every branch lives inside it. You hand the whole thing to Claude as context.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+        <div class="pros-cons">
+          <div class="pros"><h4>Pros</h4><ul><li>One file to rule everything</li><li>Agent has full context always</li><li>Easy to share with clients or Josh</li></ul></div>
+        </div>
+        <div class="pros-cons">
+          <div class="cons"><h4>Cons</h4><ul><li>Gets very long (4 site types × 5 phases)</li><li>Hard to update one track without touching the whole doc</li><li>Agent reads irrelevant branches every time</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)" style="align-items: flex-start; padding: 20px; border: 2px solid #27ae60;">
+    <div class="letter" style="background: #27ae60;">B</div>
+    <div class="content" style="width: 100%;">
+      <h3>Master Intake + 4 Track Playbooks <span style="background: #27ae60; color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 8px; text-transform: uppercase;">Recommended</span></h3>
+      <p>A short master doc handles client intake and classification. Once the site type is decided, a focused track-specific playbook takes over — its own tool list, design direction, ARCHITECTURE.md template, and brief format. Claude only reads the relevant playbook.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+        <div class="pros-cons">
+          <div class="pros"><h4>Pros</h4><ul><li>Each playbook is lean and focused</li><li>Agent gets only relevant context — faster, cheaper</li><li>Easy to update one track without touching others</li><li>Scales cleanly as you add new site types</li></ul></div>
+        </div>
+        <div class="pros-cons">
+          <div class="cons"><h4>Cons</h4><ul><li>Multiple files to maintain</li><li>Need a clear handoff point between master and track</li></ul></div>
+        </div>
+      </div>
+      <div style="background: #0d1f0d; border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 13px; color: #aaa;">
+        <strong style="color: #27ae60;">File structure:</strong> <code style="color: #ccc;">WORKFLOW.md</code> (master intake) → <code style="color: #ccc;">tracks/hospitality.md</code> · <code style="color: #ccc;">tracks/trades.md</code> · <code style="color: #ccc;">tracks/professional.md</code> · <code style="color: #ccc;">tracks/creative.md</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)" style="align-items: flex-start; padding: 20px;">
+    <div class="letter">C</div>
+    <div class="content" style="width: 100%;">
+      <h3>Claude Prompt Template System</h3>
+      <p>Instead of a reference doc, build it as a set of structured Claude prompts. A "classifier prompt" takes the client brief and outputs the site type + a generated ARCHITECTURE.md. You paste that output into the existing build workflow.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+        <div class="pros-cons">
+          <div class="pros"><h4>Pros</h4><ul><li>Most automatable — closest to full agent hand-off</li><li>Claude generates the ARCHITECTURE.md, not you</li><li>Very token-efficient at runtime</li></ul></div>
+        </div>
+        <div class="pros-cons">
+          <div class="cons"><h4>Cons</h4><ul><li>Harder to read/review as a human</li><li>Quality depends on prompt engineering</li><li>Less transparent — harder to audit what Claude decided</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="color: #888; font-size: 13px; margin-top: 20px; text-align: center;">Click your choice or reply in the terminal.</p>

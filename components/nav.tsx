@@ -42,7 +42,7 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
           transition={{ type: "spring", stiffness: 300, damping: 15 }}
         >
           <Link href="/" aria-label="CJ Studio home">
-            <Logo size={30} wordmarkColor="dark" />
+            <Logo variant="horizontal" height={30} />
           </Link>
         </motion.div>
 

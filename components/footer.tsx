@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-t border-gray-100 bg-white/60 backdrop-blur-sm py-8 px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <Link href="/">
-          <Logo size={22} wordmarkColor="dark" />
+          <Logo variant="horizontal" height={22} />
         </Link>
 
         <p className="text-[13px] text-gray-400">

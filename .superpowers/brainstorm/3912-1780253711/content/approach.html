@@ -1,0 +1,40 @@
+<h2>How should the 3D prism animation work?</h2>
+<p class="subtitle">The existing WebsiteAssembly component assembles a mock browser/website on scroll. We need to decide how the new glass prism animation fits with it.</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Augment — Prisms float around the browser mock</h3>
+      <p>Keep the existing browser assembly exactly as-is. Add 3–4 floating glass prism shapes that fall into position around the outside of the browser frame as you scroll. They act as decorative "atmosphere" — the prism logo shape, a sphere, a rectangle — orbiting the main UI demo.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Lowest risk — existing animation untouched</li><li>Fastest to build</li><li>Prisms reinforce brand without replacing content</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Two animations competing for attention</li><li>Less dramatic/cinematic than the reference video</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Replace — Full 3D prism assembly (as per JSON spec)</h3>
+      <p>Completely replace the browser mock with the glass prism animation from the JSON. CSS glass cards fall from above, rotate in 3D, and land to form the website layout structure — nav, hero, service cards — but styled as iridescent glass prisms rather than a browser window.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Most cinematic — matches the reference video exactly</li><li>Unique, memorable scroll experience</li><li>Fully on-brand with the prism motif</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Loses the existing browser-in-browser demo</li><li>More complex to build and test</li><li>3D CSS has edge cases across browsers/devices</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Two-phase — Prisms fall, then reveal the browser mock</h3>
+      <p>First half of scroll: glass prisms fall and assemble (like the video). Second half: the prisms "dissolve" or part to reveal the existing browser mock assembling underneath. Two acts in one section.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Keeps both animations</li><li>Most dramatic narrative arc</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>280vh scroll section may feel very long</li><li>Highest complexity — two animation systems to sync</li><li>Transition between acts is tricky to make smooth</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>

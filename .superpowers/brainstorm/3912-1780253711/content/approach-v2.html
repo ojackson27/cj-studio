@@ -1,0 +1,40 @@
+<h2>Revised approach — now we've seen the video</h2>
+<p class="subtitle">The video shows glass prisms falling onto a desk as decorative objects, NOT assembling into UI components. The monitor stays in background showing the website. This changes the options significantly.</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Desk scene — CSS glass prisms fall in front of browser mock (Recommended)</h3>
+      <p>Replace the current browser-only animation with a simulated desk scene. The existing browser mock sits in the background (like the monitor in the video). On scroll, CSS glass prism shapes fall into the foreground using 3D transforms — triangular prism first, then rectangles and spheres. Rainbow light effects spread across the "desk" surface. Camera zoom simulated with scale transform.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Closest to the reference video</li><li>Keeps the browser mock (shows the website UI)</li><li>The prism objects reinforce the logo directly</li><li>Very distinctive scroll experience</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More complex layout — desk + browser layers</li><li>CSS 3D perspective must be tuned carefully</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Prisms only — decorative objects fall around the existing browser mock</h3>
+      <p>Keep the exact existing animation. Overlay floating CSS glass prism elements that fall into position around the outside of the browser frame as you scroll. Simpler — no desk, no perspective scene. Just the browser assembly + glass shapes drifting in around it.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Lowest risk, existing animation 100% untouched</li><li>Quick to implement</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Less dramatic, doesn't match the video feel</li><li>Two competing focal points</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Standalone section — full desk scene, no browser mock</h3>
+      <p>A completely separate section above or below the current WebsiteAssembly. A dedicated 280vh scroll section that plays out the full desk scene exactly as in the video — prisms fall, settle, light blooms. The existing WebsiteAssembly section stays elsewhere on the page as-is.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Full creative freedom, no constraints</li><li>Both animations exist independently</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Page gets very long — two 280vh sections</li><li>May feel repetitive to scroll through both</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>

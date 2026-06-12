@@ -1,0 +1,123 @@
+<h2>Section 2: Track Playbook Structure</h2>
+<p class="subtitle">Every track playbook has the same 5 sections — the content changes, the shape doesn't. This is what Claude reads when it picks up a project.</p>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px;">
+
+  <!-- LEFT: The anatomy of a playbook -->
+  <div>
+    <h3 style="color: #fff; margin-bottom: 4px;">Playbook Anatomy (all 4 tracks)</h3>
+    <p style="color: #888; font-size: 13px; margin-bottom: 16px;">Same structure, different content per track</p>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+
+      <div style="background: #1a1a1a; border-radius: 10px; padding: 14px; display: flex; gap: 12px; align-items: flex-start;">
+        <div style="background: #8e44ad; color: white; font-size: 12px; font-weight: 700; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+        <div>
+          <div style="color: #fff; font-size: 14px; font-weight: 600;">Track Brief Template</div>
+          <div style="color: #888; font-size: 12px; margin-top: 3px;">A fill-in-the-blanks form: client name, business description, goals, colour preferences, reference sites (from Q5), photography status. This becomes the brief handed to Claude.</div>
+        </div>
+      </div>
+
+      <div style="background: #1a1a1a; border-radius: 10px; padding: 14px; display: flex; gap: 12px; align-items: flex-start;">
+        <div style="background: #8e44ad; color: white; font-size: 12px; font-weight: 700; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+        <div>
+          <div style="color: #fff; font-size: 14px; font-weight: 600;">Design Direction Rules</div>
+          <div style="color: #888; font-size: 12px; margin-top: 3px;">The non-negotiable aesthetic constraints for this track. Animation style, layout philosophy, photography treatment, typography mood. Claude never deviates from these.</div>
+        </div>
+      </div>
+
+      <div style="background: #1a1a1a; border-radius: 10px; padding: 14px; display: flex; gap: 12px; align-items: flex-start;">
+        <div style="background: #8e44ad; color: white; font-size: 12px; font-weight: 700; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+        <div>
+          <div style="color: #fff; font-size: 14px; font-weight: 600;">Tool & Component List</div>
+          <div style="color: #888; font-size: 12px; margin-top: 3px;">Exact packages and APIs for this track. No guessing. e.g. Hospitality always uses Lenis + Framer Motion reveals + Google Maps. Claude pulls from this list only.</div>
+        </div>
+      </div>
+
+      <div style="background: #1a1a1a; border-radius: 10px; padding: 14px; display: flex; gap: 12px; align-items: flex-start;">
+        <div style="background: #8e44ad; color: white; font-size: 12px; font-weight: 700; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+        <div>
+          <div style="color: #fff; font-size: 14px; font-weight: 600;">ARCHITECTURE.md Template</div>
+          <div style="color: #888; font-size: 12px; margin-top: 3px;">A pre-filled architecture file for this track — tech stack locked, component structure defined, brand placeholders clearly marked. Claude fills in the client-specific blanks.</div>
+        </div>
+      </div>
+
+      <div style="background: #1a1a1a; border-radius: 10px; padding: 14px; display: flex; gap: 12px; align-items: flex-start;">
+        <div style="background: #8e44ad; color: white; font-size: 12px; font-weight: 700; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">5</div>
+        <div>
+          <div style="color: #fff; font-size: 14px; font-weight: 600;">Human Review Gates</div>
+          <div style="color: #888; font-size: 12px; margin-top: 3px;">Exactly where you or Josh must stop and approve before Claude continues. Defined per track — a hospitality site needs a photography approval gate that a trades site doesn't.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT: Track comparison -->
+  <div>
+    <h3 style="color: #fff; margin-bottom: 4px;">What Changes Per Track</h3>
+    <p style="color: #888; font-size: 13px; margin-bottom: 16px;">Highlights of how the 4 playbooks differ</p>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+
+      <div style="background: #1a1a1a; border-radius: 10px; padding: 14px; border-left: 4px solid #e67e22;">
+        <div style="color: #e67e22; font-size: 12px; font-weight: 700; margin-bottom: 8px;">🍽 Hospitality</div>
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #ccc;">
+          <div><span style="color: #888;">Animation:</span> Slow scroll reveals, parallax hero, appetite-driven imagery</div>
+          <div><span style="color: #888;">Layout:</span> Full-bleed photography, minimal text, emotion-first</div>
+          <div><span style="color: #888;">Key section:</span> Menu display + location/hours + atmosphere gallery</div>
+          <div><span style="color: #888;">Review gate:</span> Photography approval before any build starts</div>
+        </div>
+      </div>
+
+      <div style="background: #1a1a1a; border-radius: 10px; padding: 14px; border-left: 4px solid #3498db;">
+        <div style="color: #3498db; font-size: 12px; font-weight: 700; margin-bottom: 8px;">🏗 Trades & Construction</div>
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #ccc;">
+          <div><span style="color: #888;">Animation:</span> Clean entrance animations, no gimmicks — trust-first</div>
+          <div><span style="color: #888;">Layout:</span> Project gallery hero, reviews prominent, CTA above the fold</div>
+          <div><span style="color: #888;">Key section:</span> Quote form + project gallery + accreditations/reviews</div>
+          <div><span style="color: #888;">Review gate:</span> CTA copy and quote form fields approved by client</div>
+        </div>
+      </div>
+
+      <div style="background: #1a1a1a; border-radius: 10px; padding: 14px; border-left: 4px solid #2ecc71;">
+        <div style="color: #2ecc71; font-size: 12px; font-weight: 700; margin-bottom: 8px;">💼 Professional Services</div>
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #ccc;">
+          <div><span style="color: #888;">Animation:</span> Subtle, purposeful — nothing that distracts from credibility</div>
+          <div><span style="color: #888;">Layout:</span> Typography-led, clear service hierarchy, conversion funnel</div>
+          <div><span style="color: #888;">Key section:</span> Services + credentials + Cal.com booking embed</div>
+          <div><span style="color: #888;">Review gate:</span> Services copy and pricing structure approved before build</div>
+        </div>
+      </div>
+
+      <div style="background: #1a1a1a; border-radius: 10px; padding: 14px; border-left: 4px solid #e74c3c;">
+        <div style="color: #e74c3c; font-size: 12px; font-weight: 700; margin-bottom: 8px;">🎨 Creative & Portfolio</div>
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #ccc;">
+          <div><span style="color: #888;">Animation:</span> GSAP ScrollTrigger, custom cursor, experimental transitions</div>
+          <div><span style="color: #888;">Layout:</span> Showstopper hero, work first, everything else secondary</div>
+          <div><span style="color: #888;">Key section:</span> Full portfolio showcase + artist statement + contact</div>
+          <div><span style="color: #888;">Review gate:</span> Visual direction moodboard approved before any code</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div style="background: #0d1117; border-radius: 10px; padding: 16px; margin-top: 20px; border: 1px solid #2a2a2a;">
+  <div style="color: #aaa; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">File Structure</div>
+  <div style="font-family: monospace; font-size: 13px; color: #ccc; line-height: 1.8;">
+    📁 cj-workflow/<br>
+    &nbsp;&nbsp;📄 WORKFLOW.md &nbsp;&nbsp;<span style="color: #555;">← master intake + classification logic</span><br>
+    &nbsp;&nbsp;📁 tracks/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;📄 hospitality.md<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;📄 trades.md<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;📄 professional.md<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;📄 creative.md<br>
+    &nbsp;&nbsp;📁 templates/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;📄 brief.md &nbsp;&nbsp;<span style="color: #555;">← client brief fill-in (per project)</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;📄 ARCHITECTURE.md &nbsp;&nbsp;<span style="color: #555;">← base template, forked per track</span>
+  </div>
+</div>
+
+<p style="color: #888; font-size: 13px; margin-top: 20px; text-align: center;">Does this structure look right? Reply in the terminal to move to Section 3 (how it connects to your build phases).</p>

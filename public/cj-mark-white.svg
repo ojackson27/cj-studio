@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 110" role="img" aria-label="CJ Studio">
+  <defs>
+    <mask id="cjKO">
+      <path d="M60 8 111 102 9 102Z" fill="#fff"></path>
+      <g fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M60 8V102"></path>
+        <path d="M60 39 30 102"></path>
+        <path d="M60 39 90 102"></path>
+      </g>
+    </mask>
+  </defs>
+  <path d="M60 8 111 102 9 102Z" fill="#ffffff" mask="url(#cjKO)"></path>
+</svg>
