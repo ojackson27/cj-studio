@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
+import AuroraBackground from "@/components/aurora-background";
 import Nav from "@/components/nav";
-import Work from "@/components/work";
+import WorkGallery from "@/components/work-gallery";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Work | CJ Studio",
-  description: "Selected web design projects by CJ Studio.",
+  title: "Our Work | CJ Creative Studio",
+  description:
+    "Selected projects from CJ Creative Studio — fast, modern websites for UK businesses.",
 };
 
 export default function WorkPage() {
   return (
-    <main className="min-h-[100dvh] pt-16">
+    <AuroraBackground>
       <Nav />
-      <Work />
+      <main className="pt-24 pb-0 px-6 max-w-6xl mx-auto">
+        <WorkGallery />
+      </main>
       <Footer />
-    </main>
+    </AuroraBackground>
   );
 }
