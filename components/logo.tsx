@@ -1,29 +1,36 @@
 import Image from "next/image";
 
 interface LogoProps {
-  /** "horizontal" for the nav header, "stacked" for the laptop screen */
-  variant?: "horizontal" | "stacked";
+  /** "mark" for nav (SVG icon), "horizontal" for footer, "stacked" for other uses */
+  variant?: "mark" | "horizontal" | "stacked";
   /** Height in pixels — width auto-scales to preserve aspect ratio */
   height?: number;
   className?: string;
 }
+
+const srcs: Record<NonNullable<LogoProps["variant"]>, string> = {
+  mark: "/cj-mark.svg",
+  horizontal: "/assets/cj-logo-horizontal.png",
+  stacked: "/assets/cj-logo-stacked.png",
+};
+
+const aspectRatios: Record<NonNullable<LogoProps["variant"]>, number> = {
+  mark: 1,
+  horizontal: 5,
+  stacked: 2,
+};
 
 export default function Logo({
   variant = "horizontal",
   height = 32,
   className = "",
 }: LogoProps) {
-  const src =
-    variant === "horizontal"
-      ? "/assets/cj-logo-horizontal.png"
-      : "/assets/cj-logo-stacked.png";
-
   return (
     <Image
-      src={src}
+      src={srcs[variant]}
       alt="CJ Creative Studio"
       height={height}
-      width={height * (variant === "horizontal" ? 5 : 2)}
+      width={height * aspectRatios[variant]}
       className={`h-auto ${className}`}
       style={{ height, width: "auto" }}
       priority
