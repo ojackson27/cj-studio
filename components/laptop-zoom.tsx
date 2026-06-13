@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
+import Logo from "./logo";
 import {
   useScroll,
   useTransform,
@@ -67,6 +68,17 @@ export default function LaptopZoom({ onLightChange }: Props) {
           />
           {/* Subtle aurora tint — white room walls pick up brand colours */}
           <div className="aurora-gradient animate-aurora pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-multiply [will-change:background-position]" />
+          {/* CJ Studio mark centred on laptop screen — zooms with image */}
+          <div
+            className="pointer-events-none absolute"
+            style={{
+              top: "38%",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
+            <Logo variant="mark" height={28} className="opacity-80" />
+          </div>
         </motion.div>
 
         {/* White reveal — fades in as image fades, landing on the page aurora */}
