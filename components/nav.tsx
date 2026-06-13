@@ -53,7 +53,9 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
               key={label}
               href={href}
               className={`relative text-[14px] transition-colors duration-300 py-1 group ${
-                onLight ? "text-gray-500 hover:text-gray-900" : "text-white/80 hover:text-white"
+                scrolled || onLight
+                  ? "text-gray-500 hover:text-gray-900"
+                  : "text-white/80 hover:text-white"
               }`}
             >
               {label}
