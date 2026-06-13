@@ -28,19 +28,19 @@ export default function LaptopZoom({ onLightChange }: Props) {
     prefersReducedMotion ? 1 : 1 + p * p * 8
   );
 
-  // Room fades out between 60–84% progress
-  const roomOpacity = useTransform(scrollYProgress, [0.6, 0.84], [1, 0]);
+  // Room fades out between 60–95% progress (was 60–84%)
+  const roomOpacity = useTransform(scrollYProgress, [0.6, 0.95], [1, 0]);
 
-  // White reveal fades in between 55–82% — destination matches the page aurora
-  const revealOpacity = useTransform(scrollYProgress, [0.55, 0.82], [0, 1]);
+  // White reveal fades in between 55–95% — destination matches the page aurora
+  const revealOpacity = useTransform(scrollYProgress, [0.55, 0.95], [0, 1]);
 
   // Nav text is always dark on this light hero (always light bg)
   useMotionValueEvent(scrollYProgress, "change", (p) => {
-    onLightChange(p < 0.46);
+    onLightChange(p < 0.42);
   });
 
   useEffect(() => {
-    onLightChange(scrollYProgress.get() < 0.46);
+    onLightChange(scrollYProgress.get() < 0.42);
   }, [onLightChange, scrollYProgress]);
 
   return (
