@@ -26,10 +26,10 @@ export default function WhyItMatters() {
         className={
           prefersReducedMotion
             ? "flex flex-col"
-            : "sticky top-0 h-screen overflow-hidden flex items-center"
+            : "sticky top-0 h-screen overflow-hidden max-w-[100vw] flex items-center"
         }
       >
-        <motion.div style={{ x }} className={prefersReducedMotion ? "flex flex-col w-full" : "flex w-[300vw]"}>
+        <motion.div style={{ x }} className={prefersReducedMotion ? "flex flex-col w-full" : "flex w-[300vw] max-w-none"}>
 
           {/* Slide 1 — headline */}
           <div className={prefersReducedMotion

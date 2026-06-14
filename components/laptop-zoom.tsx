@@ -110,7 +110,8 @@ export default function LaptopZoom({ onLightChange }: Props) {
                   >
                     <div className="mb-site-eyebrow">UK Web Design Studio</div>
                     <div className="mb-site-headline">
-                      Websites that<br />win clients.
+                      Websites that<br />
+                      <span className="mb-site-headline-grad">win clients.</span>
                     </div>
                     <motion.div
                       style={{ opacity: laptopTaglineOpacity, y: laptopTaglineY }}
