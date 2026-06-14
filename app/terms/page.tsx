@@ -10,7 +10,7 @@ const updated = "30 May 2026";
 
 export default function Terms() {
   return (
-    <div className="min-h-[100dvh]">
+    <main className="min-h-[100dvh]" id="main-content">
       <div className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 text-[14px] text-gray-500 hover:text-gray-900 transition-colors">
@@ -153,7 +153,7 @@ export default function Terms() {
           <a href="mailto:hello@cjstudio.co.uk" className="hover:text-gray-700 transition-colors">Contact</a>
         </div>
       </article>
-    </div>
+    </main>
   );
 }
 

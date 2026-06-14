@@ -5,9 +5,9 @@ import WorkGallery from "@/components/work-gallery";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Our Work | CJ Creative Studio",
+  title: "Our Work",
   description:
-    "Selected projects from CJ Creative Studio — fast, modern websites for UK businesses.",
+    "Selected projects from CJ Studio — fast, modern websites for UK businesses.",
 };
 
 export default function WorkPage() {

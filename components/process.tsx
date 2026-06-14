@@ -84,7 +84,7 @@ export default function Process() {
           </div>
           <div className="rounded-2xl border border-gray-100 p-8 bg-white relative overflow-hidden">
             {/* Prism accent */}
-            <div className="absolute top-0 right-0 w-32 h-32 aurora opacity-60 rounded-bl-full" aria-hidden="true" />
+            <div className="aurora-gradient animate-aurora absolute top-0 right-0 w-32 h-32 blur-2xl opacity-30 rounded-bl-full" aria-hidden="true" />
             <p className="text-[12px] uppercase tracking-widest text-gray-400 mb-3 font-medium">Monthly upkeep</p>
             <p className="text-3xl font-bold text-gray-900 mb-2">From your brief</p>
             <p className="text-[14px] text-gray-500">Auto-billed monthly. Cancel anytime with 30 days notice.</p>

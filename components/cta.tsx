@@ -16,9 +16,9 @@ export default function CTA() {
           <motion.p
             initial={reduce ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1, margin: "-40px" }}
             transition={{ duration: 0.5 }}
-            className="font-[ui-monospace,_monospace] text-[11px] uppercase tracking-[0.3em] mb-6"
+            className="font-mono text-[11px] uppercase tracking-[0.3em] mb-6"
             style={{ color: "rgba(12,14,20,0.38)" }}
           >
             Get in touch
@@ -27,7 +27,7 @@ export default function CTA() {
           <motion.h2
             initial={reduce ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1, margin: "-40px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-tight leading-[1.05] mb-6"
             style={{ color: "#0c0e14" }}
@@ -38,7 +38,7 @@ export default function CTA() {
           <motion.p
             initial={reduce ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1, margin: "-40px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg leading-relaxed max-w-[44ch] mb-10"
             style={{ color: "rgba(12,14,20,0.55)" }}
@@ -50,7 +50,7 @@ export default function CTA() {
           <motion.blockquote
             initial={reduce ? false : { opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1, margin: "-40px" }}
             transition={{ duration: 0.5, delay: 0.25 }}
             className="mb-8 max-w-[44ch]"
           >
@@ -65,7 +65,7 @@ export default function CTA() {
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1, margin: "-40px" }}
             transition={{ duration: 0.6, delay: 0.35 }}
             className="flex flex-col sm:flex-row gap-3"
           >

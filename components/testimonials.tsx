@@ -9,18 +9,25 @@ export default function Testimonials() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="py-20 px-6 border-t border-black/[0.05]">
+    <section className="py-20 px-6 border-t border-black/[0.05]" aria-label="Client testimonials">
       <div className="max-w-6xl mx-auto">
-        <motion.h2
+        <motion.div
           initial={reduce ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.5 }}
-          className="text-[11px] uppercase tracking-[0.3em] mb-12"
-          style={{ fontFamily: "var(--font-jetbrains-mono), monospace", color: "rgba(12,14,20,0.38)", fontWeight: 400 }}
+          className="mb-12"
         >
-          What clients say
-        </motion.h2>
+          <p
+            className="text-[11px] uppercase tracking-[0.3em] mb-4"
+            style={{ fontFamily: "var(--font-jetbrains-mono), monospace", color: "rgba(12,14,20,0.38)" }}
+          >
+            What clients say
+          </p>
+          <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold tracking-tight leading-tight" style={{ color: "#0c0e14" }}>
+            Results speak louder<br className="hidden sm:block" /> than promises.
+          </h2>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {quotes.map((p, i) => (
@@ -28,7 +35,7 @@ export default function Testimonials() {
               key={p.slug}
               initial={reduce ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1, margin: "-40px" }}
               transition={{ duration: 0.6, delay: i * 0.1, type: "spring", stiffness: 80 }}
               className="flex flex-col gap-5"
             >
