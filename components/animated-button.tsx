@@ -10,7 +10,7 @@ const MotionLink = motion.create(Link);
 interface Props {
   href?: string;
   onClick?: () => void;
-  variant?: "primary" | "outline" | "ghost";
+  variant?: "primary" | "outline" | "ghost" | "inverted";
   children: ReactNode;
   className?: string;
 }
@@ -24,10 +24,13 @@ export default function AnimatedButton({ href, onClick, variant = "primary", chi
     primary: "px-6 py-3 bg-gray-900 text-white hover:bg-gray-800 active:scale-[0.97]",
     outline: "px-6 py-3 border border-gray-200 text-gray-700 hover:border-gray-400 bg-white active:scale-[0.97]",
     ghost: "px-4 py-2 text-gray-500 hover:text-gray-900 hover:bg-gray-50 active:scale-[0.97]",
+    inverted: "px-6 py-3 bg-white text-[#0c0e14] hover:bg-gray-100 active:scale-[0.97]",
   };
 
   const shimmerColor = variant === "primary"
     ? "from-transparent via-white/15 to-transparent"
+    : variant === "inverted"
+    ? "from-transparent via-gray-900/8 to-transparent"
     : "from-transparent via-gray-900/8 to-transparent";
 
   const inner = (

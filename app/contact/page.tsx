@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import AuroraBackground from "@/components/aurora-background";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import ContactForm from "@/components/contact-form";
@@ -33,19 +32,19 @@ const contacts = [
 
 export default function ContactPage() {
   return (
-    <AuroraBackground>
-      <Nav />
-      <main id="main-content" className="min-h-[100dvh] pt-24 pb-20 px-6">
+    <div className="min-h-screen flex flex-col" style={{ background: "#0c0e14" }}>
+      <Nav onLight={false} />
+      <main id="main-content" className="flex-1 pt-24 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="mb-12">
-            <p className="text-[13px] uppercase tracking-[0.18em] text-gray-400 mb-4 font-medium">
+            <p className="text-[13px] uppercase tracking-[0.18em] text-white/40 mb-4 font-medium">
               Get in touch
             </p>
-            <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-bold tracking-tight text-gray-900 leading-[1.05] mb-4">
+            <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-bold tracking-tight text-white leading-[1.05] mb-4">
               Say hello.
             </h1>
-            <p className="text-lg text-gray-500 leading-relaxed max-w-[48ch]">
+            <p className="text-lg text-white/55 leading-relaxed max-w-[48ch]">
               Tell us about your project. We reply within 24 hours with a free, no-obligation quote.
             </p>
           </div>
@@ -66,24 +65,24 @@ export default function ContactPage() {
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
                     rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-gray-100 hover:border-purple-200 hover:bg-gray-50 transition-all group"
+                    className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.05] border border-white/[0.08] hover:border-[#8a6cff]/30 hover:bg-[#8a6cff]/[0.06] transition-all group"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-gray-50 group-hover:bg-purple-50 flex items-center justify-center transition-colors shrink-0">
-                      <Icon size={18} className="text-gray-500 group-hover:text-purple-500 transition-colors" />
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.06] group-hover:bg-[#8a6cff]/10 flex items-center justify-center transition-colors shrink-0">
+                      <Icon size={18} className="text-white/55 group-hover:text-[#8a6cff] transition-colors" />
                     </div>
                     <div>
-                      <p className="text-[15px] font-medium text-gray-800 group-hover:text-gray-900 transition-colors">
+                      <p className="text-[15px] font-medium text-white group-hover:text-white transition-colors">
                         {label}
                       </p>
-                      <p className="text-[13px] text-gray-400">{sub}</p>
+                      <p className="text-[13px] text-white/40">{sub}</p>
                     </div>
                   </a>
                 ))}
               </div>
 
-              <div className="pt-6 border-t border-gray-100 flex flex-col gap-2.5">
+              <div className="pt-6 border-t border-white/[0.08] flex flex-col gap-2.5">
                 {["Free, no-obligation quote", "Reply within 24 hours", "Based in the UK"].map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-[14px] text-gray-500">
+                  <div key={item} className="flex items-center gap-2 text-[14px] text-white/55">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8a6cff] shrink-0" aria-hidden="true" />
                     {item}
                   </div>
@@ -94,6 +93,6 @@ export default function ContactPage() {
         </div>
       </main>
       <Footer />
-    </AuroraBackground>
+    </div>
   );
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import AuroraBackground from "@/components/aurora-background";
 import Nav from "@/components/nav";
 import Services from "@/components/services";
 import Footer from "@/components/footer";
@@ -11,12 +10,12 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <AuroraBackground>
-      <Nav />
+    <div style={{ background: "#0c0e14" }}>
+      <Nav onLight={false} />
       <main id="main-content">
         <Services />
       </main>
       <Footer />
-    </AuroraBackground>
+    </div>
   );
 }

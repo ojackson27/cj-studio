@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import AuroraBackground from "@/components/aurora-background";
 import Nav from "@/components/nav";
 import WorkGallery from "@/components/work-gallery";
 import Footer from "@/components/footer";
@@ -12,12 +11,14 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <AuroraBackground>
-      <Nav />
-      <main id="main-content" className="pt-24 pb-0 px-6 max-w-6xl mx-auto">
-        <WorkGallery />
+    <div className="min-h-screen flex flex-col" style={{ background: "#0c0e14" }}>
+      <Nav onLight={false} />
+      <main id="main-content" className="flex-1 flex flex-col justify-center pt-16 px-6 pb-12">
+        <div className="max-w-6xl mx-auto w-full py-10">
+          <WorkGallery />
+        </div>
       </main>
       <Footer />
-    </AuroraBackground>
+    </div>
   );
 }

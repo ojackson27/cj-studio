@@ -95,15 +95,15 @@ export default function WorkGallery() {
       {/* Section header */}
       <div className="mb-10">
         <span
-          className="text-[11px] uppercase tracking-[0.28em] text-gray-400"
+          className="text-[11px] uppercase tracking-[0.28em] text-white/40"
           style={{ fontFamily: "var(--font-jetbrains-mono), monospace" }}
         >
           Our work
         </span>
-        <h2 className="mt-3 text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.03em] text-gray-900">
+        <h2 className="mt-3 text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.03em] text-white">
           Selected projects
         </h2>
-        <p className="mt-4 text-[16px] text-gray-500 max-w-[48ch] leading-relaxed">
+        <p className="mt-4 text-[16px] text-white/55 max-w-[48ch] leading-relaxed">
           A handful of the businesses we&apos;ve helped look, feel, and perform
           better online.
         </p>
@@ -120,7 +120,7 @@ export default function WorkGallery() {
               key={p.slug}
               type="button"
               onClick={() => setSelected(p)}
-              className="snap-start flex-shrink-0 w-[320px] md:w-[420px] text-left cursor-pointer rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+              className="snap-start flex-shrink-0 w-[320px] md:w-[420px] text-left cursor-pointer rounded-2xl border border-white/[0.08] bg-white/[0.05] transition-colors hover:bg-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
             >
               {/* Image */}
               <div
@@ -136,17 +136,17 @@ export default function WorkGallery() {
               </div>
 
               <div className="p-5">
-                <h3 className="text-[17px] font-semibold text-gray-900">
+                <h3 className="text-[17px] font-semibold text-white">
                   {p.name}
                 </h3>
-                <p className="text-[12px] uppercase tracking-widest text-gray-400 mt-1">
+                <p className="text-[12px] uppercase tracking-widest text-white/40 mt-1">
                   {p.type}
                 </p>
-                <p className="text-[14px] text-gray-500 mt-2 leading-relaxed">
+                <p className="text-[14px] text-white/55 mt-2 leading-relaxed">
                   {p.description.slice(0, 80)}…
                 </p>
                 <div className="mt-4 flex justify-end">
-                  <ArrowUpRight size={16} className="text-gray-400" />
+                  <ArrowUpRight size={16} className="text-white/40" />
                 </div>
               </div>
             </button>
@@ -159,18 +159,18 @@ export default function WorkGallery() {
           onClick={() => scrollByAmount(-440)}
           disabled={!canScrollLeft}
           aria-label="Previous projects"
-          className="absolute top-1/2 -translate-y-1/2 -left-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-50"
+          className="absolute top-1/2 -translate-y-1/2 -left-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.08] transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/[0.14]"
         >
-          <ArrowLeft size={18} className="text-gray-700" />
+          <ArrowLeft size={18} className="text-white" />
         </button>
         <button
           type="button"
           onClick={() => scrollByAmount(440)}
           disabled={!canScrollRight}
           aria-label="Next projects"
-          className="absolute top-1/2 -translate-y-1/2 -right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-md transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-50"
+          className="absolute top-1/2 -translate-y-1/2 -right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.08] transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/[0.14]"
         >
-          <ArrowRight size={18} className="text-gray-700" />
+          <ArrowRight size={18} className="text-white" />
         </button>
       </div>
 
@@ -180,7 +180,7 @@ export default function WorkGallery() {
           <>
             <motion.div
               key="backdrop"
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -193,7 +193,8 @@ export default function WorkGallery() {
               role="dialog"
               aria-modal="true"
               aria-label={`${selected.name} case study`}
-              className="fixed inset-x-4 inset-y-8 md:inset-x-[10%] md:inset-y-[5%] z-50 bg-white rounded-3xl overflow-y-auto shadow-2xl"
+              className="fixed inset-x-4 inset-y-8 md:inset-x-[10%] md:inset-y-[5%] z-50 rounded-3xl overflow-y-auto border border-white/[0.10]"
+              style={{ background: "#0c0e14" }}
               initial={panelInitial}
               animate={panelAnimate}
               exit={panelExit}
@@ -205,9 +206,9 @@ export default function WorkGallery() {
                 autoFocus
                 onClick={() => setSelected(null)}
                 aria-label="Close"
-                className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm shadow-md hover:bg-white transition-colors"
+                className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.08] backdrop-blur-sm hover:bg-white/[0.16] transition-colors"
               >
-                <X size={24} className="text-gray-900" />
+                <X size={24} className="text-white" />
               </button>
 
               {/* Image hero */}
@@ -225,13 +226,13 @@ export default function WorkGallery() {
 
               {/* Content */}
               <div className="p-8 md:p-12">
-                <h3 className="text-3xl font-bold text-gray-900">
+                <h3 className="text-3xl font-bold text-white">
                   {selected.name}
                 </h3>
-                <p className="text-[13px] uppercase tracking-widest text-gray-400 mt-1">
+                <p className="text-[13px] uppercase tracking-widest text-white/40 mt-1">
                   {selected.type}
                 </p>
-                <p className="text-[16px] text-gray-600 mt-4 leading-relaxed">
+                <p className="text-[16px] text-white/60 mt-4 leading-relaxed">
                   {selected.description}
                 </p>
 
@@ -246,7 +247,7 @@ export default function WorkGallery() {
                             "linear-gradient(135deg, #8a6cff, #27d7c4)",
                         }}
                       />
-                      <span className="text-[15px] text-gray-600 leading-relaxed">
+                      <span className="text-[15px] text-white/60 leading-relaxed">
                         {d}
                       </span>
                     </li>
@@ -262,10 +263,10 @@ export default function WorkGallery() {
                         "linear-gradient(to bottom, #8a6cff, #27d7c4) 1",
                     }}
                   >
-                    <p className="text-[17px] italic text-gray-700">
-                      “{selected.quote.text}”
+                    <p className="text-[17px] italic text-white/80">
+                      &ldquo;{selected.quote.text}&rdquo;
                     </p>
-                    <footer className="text-[13px] text-gray-400 mt-2">
+                    <footer className="text-[13px] text-white/40 mt-2">
                       {selected.quote.author}
                     </footer>
                   </blockquote>
@@ -278,7 +279,7 @@ export default function WorkGallery() {
                       href={selected.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[14px] font-medium bg-gray-900 text-white hover:bg-gray-700 transition-colors"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[14px] font-medium bg-white text-[#0c0e14] hover:bg-gray-100 transition-colors"
                     >
                       Visit site
                       <ArrowUpRight size={16} />

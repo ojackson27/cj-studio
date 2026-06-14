@@ -25,11 +25,11 @@ export default function ContactForm() {
         animate={{ opacity: 1, y: 0 }}
         className="flex flex-col items-start gap-3 py-8"
       >
-        <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center">
-          <CheckCircle size={24} weight="fill" className="text-emerald-500" />
+        <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center">
+          <CheckCircle size={24} weight="fill" className="text-emerald-400" />
         </div>
-        <h3 className="text-xl font-semibold text-gray-900">Message sent!</h3>
-        <p className="text-[15px] text-gray-500">We&apos;ll be in touch within 24 hours.</p>
+        <h3 className="text-xl font-semibold text-white">Message sent!</h3>
+        <p className="text-[15px] text-white/55">We&apos;ll be in touch within 24 hours.</p>
       </motion.div>
     );
   }
@@ -38,7 +38,7 @@ export default function ContactForm() {
     <form action={action} className="flex flex-col gap-5">
       {/* Server error */}
       {state.serverError && (
-        <div className="flex items-start gap-2 p-4 rounded-xl bg-red-50 text-red-700 text-[14px]">
+        <div className="flex items-start gap-2 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-[14px]">
           <Warning size={18} weight="fill" className="shrink-0 mt-0.5" />
           Something went wrong — please email us directly at{" "}
           <a href="mailto:hello@cjstudio.co.uk" className="underline font-medium">
@@ -49,7 +49,7 @@ export default function ContactForm() {
 
       {/* Name */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="name" className="text-[13px] font-medium text-gray-700">
+        <label htmlFor="name" className="text-[13px] font-medium text-white/70">
           Name
         </label>
         <input
@@ -60,18 +60,18 @@ export default function ContactForm() {
           autoComplete="name"
           aria-invalid={state.errors?.name ? "true" : undefined}
           aria-describedby={state.errors?.name ? "name-error" : undefined}
-          className={`w-full rounded-xl border px-4 py-3 text-[15px] text-gray-900 placeholder-gray-400 bg-white outline-none transition-all duration-200
-            focus:ring-2 focus:ring-purple-300 focus:border-purple-300
-            ${state.errors?.name ? "border-red-300 bg-red-50/40" : "border-gray-200 hover:border-gray-300"}`}
+          className={`w-full rounded-xl border px-4 py-3 text-[15px] text-white placeholder-white/30 bg-white/[0.07] outline-none transition-all duration-200
+            focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/70
+            ${state.errors?.name ? "border-red-500/50 bg-red-500/[0.07]" : "border-white/[0.12] hover:border-white/[0.20]"}`}
         />
         {state.errors?.name && (
-          <p id="name-error" role="alert" className="text-[13px] text-red-500">{state.errors.name}</p>
+          <p id="name-error" role="alert" className="text-[13px] text-red-400">{state.errors.name}</p>
         )}
       </div>
 
       {/* Email */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="email" className="text-[13px] font-medium text-gray-700">
+        <label htmlFor="email" className="text-[13px] font-medium text-white/70">
           Email
         </label>
         <input
@@ -82,18 +82,18 @@ export default function ContactForm() {
           autoComplete="email"
           aria-invalid={state.errors?.email ? "true" : undefined}
           aria-describedby={state.errors?.email ? "email-error" : undefined}
-          className={`w-full rounded-xl border px-4 py-3 text-[15px] text-gray-900 placeholder-gray-400 bg-white outline-none transition-all duration-200
-            focus:ring-2 focus:ring-purple-300 focus:border-purple-300
-            ${state.errors?.email ? "border-red-300 bg-red-50/40" : "border-gray-200 hover:border-gray-300"}`}
+          className={`w-full rounded-xl border px-4 py-3 text-[15px] text-white placeholder-white/30 bg-white/[0.07] outline-none transition-all duration-200
+            focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/70
+            ${state.errors?.email ? "border-red-500/50 bg-red-500/[0.07]" : "border-white/[0.12] hover:border-white/[0.20]"}`}
         />
         {state.errors?.email && (
-          <p id="email-error" role="alert" className="text-[13px] text-red-500">{state.errors.email}</p>
+          <p id="email-error" role="alert" className="text-[13px] text-red-400">{state.errors.email}</p>
         )}
       </div>
 
       {/* Message */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="message" className="text-[13px] font-medium text-gray-700">
+        <label htmlFor="message" className="text-[13px] font-medium text-white/70">
           Message
         </label>
         <textarea
@@ -103,16 +103,16 @@ export default function ContactForm() {
           placeholder="Tell us about your project — what you need, rough timeline, any references you like"
           aria-invalid={state.errors?.message ? "true" : undefined}
           aria-describedby={state.errors?.message ? "message-error" : undefined}
-          className={`w-full rounded-xl border px-4 py-3 text-[15px] text-gray-900 placeholder-gray-400 bg-white outline-none transition-all duration-200 resize-none
-            focus:ring-2 focus:ring-purple-300 focus:border-purple-300
-            ${state.errors?.message ? "border-red-300 bg-red-50/40" : "border-gray-200 hover:border-gray-300"}`}
+          className={`w-full rounded-xl border px-4 py-3 text-[15px] text-white placeholder-white/30 bg-white/[0.07] outline-none transition-all duration-200 resize-none
+            focus:ring-2 focus:ring-purple-400/50 focus:border-purple-400/70
+            ${state.errors?.message ? "border-red-500/50 bg-red-500/[0.07]" : "border-white/[0.12] hover:border-white/[0.20]"}`}
         />
         {state.errors?.message && (
-          <p id="message-error" role="alert" className="text-[13px] text-red-500">{state.errors.message}</p>
+          <p id="message-error" role="alert" className="text-[13px] text-red-400">{state.errors.message}</p>
         )}
       </div>
 
-      <AnimatedButton variant="primary" className="self-start mt-1">
+      <AnimatedButton variant="inverted" className="self-start mt-1">
         {pending ? "Sending..." : "Send message"}
       </AnimatedButton>
     </form>
