@@ -162,8 +162,39 @@ export default function Services() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="aspect-video rounded-2xl bg-gradient-to-br from-purple-50 to-teal-50 border border-purple-100"
-            />
+              className="aspect-video rounded-2xl overflow-hidden bg-[#0c0e14] border border-white/10 flex flex-col"
+              aria-hidden="true"
+            >
+              {/* Browser chrome */}
+              <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/10 shrink-0">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-400/50" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/50" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-400/50" />
+                <div className="flex-1 mx-3 rounded-md bg-white/5 h-5 flex items-center px-2">
+                  <span className="text-[9px] text-white/30 font-mono tracking-wide">yourclientsite.co.uk</span>
+                </div>
+              </div>
+              {/* Mock page content */}
+              <div className="flex-1 p-5 flex flex-col gap-3">
+                <div className="h-5 w-3/4 rounded-full" style={{ background: "linear-gradient(90deg, #8a6cff 0%, #4d7cff 60%, #27d7c4 100%)" }} />
+                <div className="h-2.5 w-full rounded-full bg-white/8" />
+                <div className="h-2.5 w-5/6 rounded-full bg-white/8" />
+                <div className="h-2.5 w-4/6 rounded-full bg-white/6" />
+                <div className="mt-2 flex gap-2">
+                  <div className="h-8 w-28 rounded-full bg-[#8a6cff]/70" />
+                  <div className="h-8 w-20 rounded-full border border-white/15" />
+                </div>
+                <div className="mt-auto grid grid-cols-3 gap-2">
+                  {[0.14, 0.09, 0.11].map((op, i) => (
+                    <div
+                      key={i}
+                      className="rounded-lg aspect-[4/3]"
+                      style={{ background: `rgba(138,108,255,${op})`, border: "1px solid rgba(138,108,255,0.12)" }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, useReducedMotion, useScroll, useMotionValueEvent } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
 import Logo from "./logo";
@@ -9,7 +10,7 @@ import Logo from "./logo";
 const links = [
   { label: "Work",     href: "/work" },
   { label: "Services", href: "/services" },
-  { label: "Process",  href: "/process" },
+  { label: "About",    href: "/about" },
   { label: "Contact",  href: "/contact" },
 ];
 
@@ -20,6 +21,7 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
+  const pathname = usePathname();
 
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 20);
@@ -56,29 +58,35 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
           transition={{ type: "spring", stiffness: 300, damping: 15 }}
         >
           <Link href="/" aria-label="CJ Studio home" className="flex items-center gap-2.5 select-none">
-            <Logo variant="full" height={30} />
+            <Logo variant="full" height={30} priority />
           </Link>
         </motion.div>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {links.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              className={`relative text-[14px] transition-colors duration-300 py-1 group ${
-                onLight
-                  ? "text-gray-500 hover:text-gray-900"
-                  : "text-white/75 hover:text-white"
-              }`}
-            >
-              {label}
-              <span
-                className="absolute bottom-0 left-0 w-full h-px scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"
-                style={{ background: GRAD }}
-              />
-            </Link>
-          ))}
+          {links.map(({ label, href }) => {
+            const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+            return (
+              <Link
+                key={label}
+                href={href}
+                aria-current={isActive ? "page" : undefined}
+                className={`relative text-[14px] transition-colors duration-300 py-1 group ${
+                  isActive
+                    ? onLight ? "text-gray-900" : "text-white"
+                    : onLight ? "text-gray-500 hover:text-gray-900" : "text-white/75 hover:text-white"
+                }`}
+              >
+                {label}
+                <span
+                  className={`absolute bottom-0 left-0 w-full h-px transition-transform duration-300 origin-left rounded-full ${
+                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                  style={{ background: GRAD }}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Mobile toggle */}
@@ -90,7 +98,9 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
               : "text-white/80 hover:bg-white/10"
           }`}
           onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           <motion.div animate={{ rotate: open ? 90 : 0 }} transition={{ duration: 0.2 }}>
             {open ? <X size={20} /> : <List size={20} />}
@@ -100,6 +110,7 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
 
       {/* Mobile menu */}
       <motion.div
+        id="mobile-menu"
         initial={false}
         animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
         transition={{ duration: 0.25 }}
@@ -110,20 +121,24 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
         }`}
       >
         <div className="px-6 py-4 flex flex-col gap-4">
-          {links.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              className={`text-[15px] transition-colors py-1 ${
-                onLight
-                  ? "text-gray-700 hover:text-gray-900"
-                  : "text-white/80 hover:text-white"
-              }`}
-              onClick={() => setOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
+          {links.map(({ label, href }) => {
+            const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+            return (
+              <Link
+                key={label}
+                href={href}
+                aria-current={isActive ? "page" : undefined}
+                className={`text-[15px] transition-colors py-1 font-medium ${
+                  isActive
+                    ? onLight ? "text-gray-900" : "text-white"
+                    : onLight ? "text-gray-700 hover:text-gray-900" : "text-white/80 hover:text-white"
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </div>
       </motion.div>
     </motion.header>

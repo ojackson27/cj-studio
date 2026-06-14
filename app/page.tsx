@@ -9,12 +9,14 @@ export default function Home() {
   return (
     <>
       <HomeClient />
-      <DarkWorkCarousel />
-      {/* Gradient bridge: dark carousel → aurora */}
-      <div className="h-32 bg-gradient-to-b from-[#0c0e14] to-transparent -mt-1" />
-      <WhyItMatters />
-      <Testimonials />
-      <CTA />
+      <main id="main-content">
+        <DarkWorkCarousel />
+        {/* Gradient bridge: dark carousel → aurora */}
+        <div className="h-32 bg-gradient-to-b from-[#0c0e14] to-transparent -mt-1" />
+        <WhyItMatters />
+        <Testimonials />
+        <CTA />
+      </main>
       <Footer />
     </>
   );

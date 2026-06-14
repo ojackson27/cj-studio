@@ -6,6 +6,8 @@ interface LogoProps {
   /** Height in pixels — width auto-scales to preserve aspect ratio */
   height?: number;
   className?: string;
+  /** Only true for above-the-fold logos (nav, hero). Defaults to false. */
+  priority?: boolean;
 }
 
 const srcs: Record<NonNullable<LogoProps["variant"]>, string> = {
@@ -26,6 +28,7 @@ export default function Logo({
   variant = "horizontal",
   height = 32,
   className = "",
+  priority = false,
 }: LogoProps) {
   return (
     <Image
@@ -35,7 +38,7 @@ export default function Logo({
       width={height * aspectRatios[variant]}
       className={`h-auto ${className}`}
       style={{ height, width: "auto" }}
-      priority
+      priority={priority}
     />
   );
 }

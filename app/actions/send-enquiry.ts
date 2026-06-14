@@ -5,6 +5,15 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "hello@cjstudio.co.uk";
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+}
+
 interface FormState {
   success?: boolean;
   serverError?: boolean;
@@ -43,30 +52,31 @@ export async function sendEnquiry(_prev: FormState, formData: FormData): Promise
           <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
             <tr>
               <td style="padding: 10px 0; font-size: 13px; color: #6b7280; width: 80px; vertical-align: top;">Name</td>
-              <td style="padding: 10px 0; font-size: 15px; font-weight: 600; color: #111827;">${name}</td>
+              <td style="padding: 10px 0; font-size: 15px; font-weight: 600; color: #111827;">${escapeHtml(name)}</td>
             </tr>
             <tr>
               <td style="padding: 10px 0; font-size: 13px; color: #6b7280; vertical-align: top;">Email</td>
               <td style="padding: 10px 0; font-size: 15px; color: #111827;">
-                <a href="mailto:${email}" style="color: #a78bfa; text-decoration: none;">${email}</a>
+                <a href="mailto:${escapeHtml(email)}" style="color: #a78bfa; text-decoration: none;">${escapeHtml(email)}</a>
               </td>
             </tr>
           </table>
 
           <div style="background: #f9fafb; border-radius: 12px; padding: 20px; margin-bottom: 32px;">
             <p style="margin: 0 0 8px; font-size: 13px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.08em;">Message</p>
-            <p style="margin: 0; font-size: 15px; color: #111827; line-height: 1.6; white-space: pre-wrap;">${message}</p>
+            <p style="margin: 0; font-size: 15px; color: #111827; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(message)}</p>
           </div>
 
-          <a href="mailto:${email}" style="display: inline-block; background: #111827; color: white; text-decoration: none; padding: 12px 24px; border-radius: 9999px; font-size: 14px; font-weight: 600;">
-            Reply to ${name}
+          <a href="mailto:${escapeHtml(email)}" style="display: inline-block; background: #111827; color: white; text-decoration: none; padding: 12px 24px; border-radius: 9999px; font-size: 14px; font-weight: 600;">
+            Reply to ${escapeHtml(name)}
           </a>
         </div>
       `,
     });
 
     return { success: true };
-  } catch {
+  } catch (e) {
+    console.error("[send-enquiry] Resend error:", e);
     return { serverError: true };
   }
 }

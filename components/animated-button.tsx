@@ -18,7 +18,7 @@ interface Props {
 export default function AnimatedButton({ href, onClick, variant = "primary", children, className = "" }: Props) {
   const reduce = useReducedMotion();
 
-  const base = "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full text-[14px] font-medium transition-colors duration-200 select-none cursor-pointer";
+  const base = "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full text-[14px] font-medium transition-colors duration-200 select-none cursor-pointer";
 
   const variants = {
     primary: "px-6 py-3 bg-gray-900 text-white hover:bg-gray-800 active:scale-[0.97]",
@@ -32,13 +32,10 @@ export default function AnimatedButton({ href, onClick, variant = "primary", chi
 
   const inner = (
     <>
-      {/* Shimmer sweep */}
+      {/* Shimmer sweep — driven by parent group-hover */}
       {!reduce && (
-        <motion.span
-          className={`pointer-events-none absolute inset-0 -skew-x-12 bg-gradient-to-r ${shimmerColor}`}
-          initial={{ x: "-110%" }}
-          whileHover={{ x: "210%" }}
-          transition={{ duration: 0.45, ease: "easeInOut" }}
+        <span
+          className={`pointer-events-none absolute inset-0 -skew-x-12 bg-gradient-to-r ${shimmerColor} translate-x-[-110%] group-hover:translate-x-[210%] transition-transform duration-[450ms] ease-in-out`}
           aria-hidden="true"
         />
       )}
@@ -60,6 +57,7 @@ export default function AnimatedButton({ href, onClick, variant = "primary", chi
 
   return (
     <motion.button
+      type="submit"
       onClick={onClick}
       whileTap={reduce ? {} : { scale: 0.97 }}
       className={`${base} ${variants[variant]} ${className}`}

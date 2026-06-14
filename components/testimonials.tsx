@@ -11,16 +11,16 @@ export default function Testimonials() {
   return (
     <section className="py-20 px-6 border-t border-black/[0.05]">
       <div className="max-w-6xl mx-auto">
-        <motion.p
+        <motion.h2
           initial={reduce ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5 }}
           className="text-[11px] uppercase tracking-[0.3em] mb-12"
-          style={{ fontFamily: "ui-monospace, monospace", color: "rgba(12,14,20,0.38)" }}
+          style={{ fontFamily: "var(--font-jetbrains-mono), monospace", color: "rgba(12,14,20,0.38)", fontWeight: 400 }}
         >
           What clients say
-        </motion.p>
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {quotes.map((p, i) => (

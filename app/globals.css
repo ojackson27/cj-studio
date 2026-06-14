@@ -60,6 +60,9 @@ body::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .aurora-gradient {
     animation: none;
   }
@@ -248,7 +251,6 @@ body::before {
   gap: 1cqw;
   font-size: 1.3cqw;
   font-weight: 500;
-  color: #0c0e14;
   padding: 1.4cqw 2.8cqw;
   background: #0c0e14;
   color: #ffffff;
