@@ -14,7 +14,7 @@ export default function WorkPage() {
   return (
     <AuroraBackground>
       <Nav />
-      <main className="pt-24 pb-0 px-6 max-w-6xl mx-auto">
+      <main id="main-content" className="pt-24 pb-0 px-6 max-w-6xl mx-auto">
         <WorkGallery />
       </main>
       <Footer />

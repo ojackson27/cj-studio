@@ -86,7 +86,7 @@ export default function About() {
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.15, margin: "-60px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-12"
         >
@@ -101,7 +101,7 @@ export default function About() {
               key={p.title}
               initial={reduce ? false : { opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
               className="rounded-2xl bg-white border border-gray-100 p-6 flex flex-col gap-3"
             >
@@ -118,7 +118,7 @@ export default function About() {
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.15, margin: "-60px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-12"
         >
@@ -130,7 +130,7 @@ export default function About() {
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
         >
           <div
@@ -155,7 +155,7 @@ export default function About() {
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.15, margin: "-60px" }}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
           className="flex flex-wrap gap-3 mt-6"
         >
@@ -179,7 +179,7 @@ export default function About() {
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.15, margin: "-60px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-12"
         >
@@ -194,7 +194,7 @@ export default function About() {
               key={f.name}
               initial={reduce ? false : { opacity: 0, y: 48 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
+              viewport={{ once: true, amount: 0.1, margin: "-50px" }}
               transition={{ duration: 0.7, delay: i * 0.15, type: "spring", stiffness: 70, damping: 16 }}
               className="rounded-2xl bg-white border border-gray-100 p-8 flex flex-col gap-6"
             >

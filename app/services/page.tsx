@@ -13,7 +13,7 @@ export default function ServicesPage() {
   return (
     <AuroraBackground>
       <Nav />
-      <main>
+      <main id="main-content">
         <Services />
       </main>
       <Footer />

@@ -5,7 +5,7 @@ import About from "@/components/about";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "About Us | CJ Studio",
+  title: "About",
   description: "Who we are, how we work, and the people behind CJ Creative Studio.",
 };
 
@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <AuroraBackground>
       <Nav />
-      <main>
+      <main id="main-content">
         <About />
       </main>
       <Footer />
