@@ -62,27 +62,11 @@ export default function CTA() {
             Tell us about your project. We&apos;ll get back to you within 24 hours with a quote.
           </motion.p>
 
-          {/* Social proof co-located with CTA */}
-          <motion.blockquote
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="mb-8 max-w-[44ch]"
-          >
-            <p className="text-[15px] italic leading-relaxed" style={{ color: "rgba(12,14,20,0.50)" }}>
-              &ldquo;The site went live on a Friday. By Monday our bookings were up 40%.&rdquo;
-            </p>
-            <footer className="mt-2 text-[13px]" style={{ color: "rgba(12,14,20,0.35)" }}>
-              — Maple &amp; Co
-            </footer>
-          </motion.blockquote>
-
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1, margin: "-40px" }}
-            transition={{ duration: 0.6, delay: 0.35 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
             className="flex flex-col sm:flex-row gap-3"
           >
             <AnimatedButton href="/contact" variant="primary">
