@@ -9,16 +9,7 @@ const slides = [
     headline: (
       <>
         Your website is the first thing they{" "}
-        <span
-          style={{
-            background: "linear-gradient(90deg, #8a6cff, #4d7cff 52%, #27d7c4)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          judge.
-        </span>
+        <span style={{ color: "#8a6cff" }}>judge.</span>
       </>
     ),
     body: "Before you speak a single word, your site has already made an introduction. Visitors form an opinion in as little as 0.05 seconds — and that impression shapes everything that follows.",
@@ -28,16 +19,7 @@ const slides = [
     headline: (
       <>
         It&apos;s your digital{" "}
-        <span
-          style={{
-            background: "linear-gradient(90deg, #8a6cff, #4d7cff 52%, #27d7c4)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          first impression.
-        </span>
+        <span style={{ color: "#8a6cff" }}>first impression.</span>
       </>
     ),
     body: "A poor first impression is nearly impossible to recover from. Your website isn't just a digital brochure — it's your most powerful sales tool, working around the clock.",
@@ -58,7 +40,7 @@ const headingStyle: React.CSSProperties = {
   lineHeight: 1.05,
   letterSpacing: "-0.03em",
   maxWidth: "22ch",
-  color: "#0c0e14",
+  color: "#ffffff",
   margin: 0,
 };
 
@@ -66,14 +48,14 @@ const eyebrowStyle: React.CSSProperties = {
   fontFamily: "var(--font-jetbrains-mono), monospace",
   fontSize: 11,
   letterSpacing: "0.30em",
-  color: "rgba(12,14,20,0.38)",
+  color: "rgba(255,255,255,0.40)",
 };
 
 const bodyStyle: React.CSSProperties = {
   fontFamily: "var(--font-space-grotesk), sans-serif",
   fontSize: "clamp(15px, 1.5vw, 18px)",
   lineHeight: 1.7,
-  color: "rgba(12,14,20,0.55)",
+  color: "rgba(255,255,255,0.60)",
   maxWidth: "44ch",
   margin: "clamp(20px,3vw,32px) 0 0",
 };
@@ -162,15 +144,12 @@ export default function WhyItMatters() {
                     fontSize: "clamp(1.8rem,8vw,2.5rem)",
                     lineHeight: 1,
                     letterSpacing: "-0.03em",
-                    background: "linear-gradient(90deg, #8a6cff, #4d7cff 52%, #27d7c4)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
+                    color: "#8a6cff",
                   }}
                 >
                   {stat}
                 </div>
-                <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: 13, lineHeight: 1.5, color: "rgba(12,14,20,0.55)", marginTop: 6 }}>
+                <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: 13, lineHeight: 1.5, color: "rgba(255,255,255,0.60)", marginTop: 6 }}>
                   {label}
                 </p>
               </div>
@@ -238,7 +217,7 @@ export default function WhyItMatters() {
                         fontFamily: "var(--font-space-grotesk), sans-serif",
                         fontSize: "clamp(13px, 1.2vw, 15px)",
                         lineHeight: 1.5,
-                        color: "rgba(12,14,20,0.55)",
+                        color: "rgba(255,255,255,0.60)",
                         marginTop: 8,
                         maxWidth: "22ch",
                       }}

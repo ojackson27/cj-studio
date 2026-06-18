@@ -35,7 +35,7 @@ export default function CTA() {
             viewport={{ once: true, amount: 0.1, margin: "-40px" }}
             transition={{ duration: 0.5 }}
             className="font-mono text-[11px] uppercase tracking-[0.3em] mb-6"
-            style={{ color: "rgba(12,14,20,0.38)" }}
+            style={{ color: "rgba(255,255,255,0.40)" }}
           >
             Get in touch
           </motion.p>
@@ -46,7 +46,7 @@ export default function CTA() {
             viewport={{ once: true, amount: 0.1, margin: "-40px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-[clamp(2.5rem,6vw,4rem)] font-bold tracking-tight leading-[1.05] mb-6"
-            style={{ color: "#0c0e14" }}
+            style={{ color: "#ffffff" }}
           >
             Ready to build<br />something great?
           </motion.h2>
@@ -57,7 +57,7 @@ export default function CTA() {
             viewport={{ once: true, amount: 0.1, margin: "-40px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg leading-relaxed max-w-[44ch] mb-10"
-            style={{ color: "rgba(12,14,20,0.55)" }}
+            style={{ color: "rgba(255,255,255,0.60)" }}
           >
             Tell us about your project. We&apos;ll get back to you within 24 hours with a quote.
           </motion.p>
@@ -72,13 +72,10 @@ export default function CTA() {
             <AnimatedButton href="/contact" variant="primary">
               <EnvelopeSimple size={16} weight="bold" />
               hello@cjstudio.co.uk
-              <motion.span
-                initial={{ x: 0 }}
-                whileHover={{ x: 3 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
+              {/* Arrow slides on group-hover (whole button), not just on arrow hover */}
+              <span className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">
                 <ArrowRight size={14} weight="bold" />
-              </motion.span>
+              </span>
             </AnimatedButton>
 
             <AnimatedButton href="/work" variant="outline">

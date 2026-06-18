@@ -21,17 +21,15 @@ export default function AnimatedButton({ href, onClick, variant = "primary", chi
   const base = "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full text-[14px] font-medium transition-colors duration-200 select-none cursor-pointer";
 
   const variants = {
-    primary: "px-6 py-3 bg-gray-900 text-white hover:bg-gray-800",
-    outline: "px-6 py-3 border border-gray-200 text-gray-700 hover:border-gray-400 bg-white",
-    ghost: "px-4 py-2 text-gray-500 hover:text-gray-900 hover:bg-gray-50",
+    primary: "px-6 py-3 bg-white text-[#0c0e14] hover:bg-gray-100",
+    outline: "px-6 py-3 border border-white/25 text-white hover:border-white/50 bg-transparent",
+    ghost: "px-4 py-2 text-white/55 hover:text-white hover:bg-white/10",
     inverted: "px-6 py-3 bg-white text-[#0c0e14] hover:bg-gray-100",
   };
 
-  const shimmerColor = variant === "primary"
-    ? "from-transparent via-white/15 to-transparent"
-    : variant === "inverted"
-    ? "from-transparent via-gray-900/8 to-transparent"
-    : "from-transparent via-gray-900/8 to-transparent";
+  const shimmerColor = (variant === "primary" || variant === "inverted")
+    ? "from-transparent via-gray-900/10 to-transparent"
+    : "from-transparent via-white/12 to-transparent";
 
   const inner = (
     <>
@@ -46,11 +44,14 @@ export default function AnimatedButton({ href, onClick, variant = "primary", chi
     </>
   );
 
+  const tapTransition = { type: "spring" as const, stiffness: 500, damping: 30 };
+
   if (href) {
     return (
       <MotionLink
         href={href}
         whileTap={reduce ? {} : { scale: 0.97 }}
+        transition={tapTransition}
         className={`${base} ${variants[variant]} ${className}`}
       >
         {inner}
@@ -63,6 +64,7 @@ export default function AnimatedButton({ href, onClick, variant = "primary", chi
       type="submit"
       onClick={onClick}
       whileTap={reduce ? {} : { scale: 0.97 }}
+      transition={tapTransition}
       className={`${base} ${variants[variant]} ${className}`}
     >
       {inner}

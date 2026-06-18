@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111827;
+  --background: #0c0e14;
+  --foreground: #ffffff;
   --purple: #8a6cff;
   --blue: #4d7cff;
   --teal: #27d7c4;
+
+  /* Easing library — use these instead of CSS built-ins */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 @theme inline {
@@ -21,25 +26,9 @@ html {
 }
 
 body {
-  background: #ffffff;
+  background: #0c0e14;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
-}
-
-/* Global persistent aurora — fixed behind all phases */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 12% 18%, rgba(138, 108, 255, 0.28) 0%, transparent 52%),
-    radial-gradient(ellipse at 86% 10%, rgba(77, 124, 255, 0.20) 0%, transparent 50%),
-    radial-gradient(ellipse at 72% 88%, rgba(39, 215, 196, 0.22) 0%, transparent 52%),
-    radial-gradient(ellipse at 4%  82%, rgba(138, 108, 255, 0.12) 0%, transparent 48%),
-    radial-gradient(ellipse at 52% 50%, rgba(77, 124, 255, 0.08) 0%, transparent 60%),
-    #ffffff;
 }
 
 @keyframes aurora {
@@ -359,7 +348,7 @@ body::before {
 }
 
 .hint-arrow {
-  animation: hint-nudge 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation: hint-nudge 1.8s var(--ease-out) infinite;
 }
 
 @keyframes hint-nudge {

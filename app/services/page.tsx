@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div style={{ background: "#0c0e14" }}>
+    <div>
       <Nav onLight={false} />
       <main id="main-content">
         <Services />

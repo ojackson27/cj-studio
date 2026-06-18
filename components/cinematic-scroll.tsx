@@ -154,7 +154,7 @@ export default function CinematicScroll({
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative h-[300vh]">
+    <div ref={sectionRef} className="relative h-[500vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-black">
         {/* Canvas */}
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
@@ -167,6 +167,19 @@ export default function CinematicScroll({
           />
         )}
 
+        {/* HQ first-frame overlay — zooms in sync with the sequence, fades out at ~10-12% scroll */}
+        <img
+          src="/assets/hero-hq.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          style={{
+            opacity: Math.max(0, 1 - Math.max(0, scrollProgress - 0.12) / 0.06),
+            transform: `scale(${1 + scrollProgress * 4})`,
+            transformOrigin: "center center",
+          }}
+        />
+
         {/* CJ Studio logo — sits on laptop screen at scroll=0, fades out on scroll */}
         <div
           className="absolute pointer-events-none z-10"
@@ -175,7 +188,7 @@ export default function CinematicScroll({
             top: "37%",
             transform: "translateX(-50%) translateY(-50%)",
             width: "28%",
-            opacity: Math.max(0, 1 - scrollProgress / 0.06),
+            opacity: Math.max(0, 1 - scrollProgress / 0.04),
             transition: "opacity 0.1s linear",
           }}
         >

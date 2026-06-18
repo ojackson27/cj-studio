@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div style={{ background: "#0c0e14" }}>
+    <div>
       <Nav onLight={false} />
       <main id="main-content">
         <About />

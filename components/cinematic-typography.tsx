@@ -19,8 +19,8 @@ interface StageConfig {
 
 const stages: StageConfig[] = [
   {
-    eyebrow: "CREATIVE STUDIO",
-    headline: "Where creativity\nmeets craft.",
+    eyebrow: "WEB DESIGN STUDIO",
+    headline: "We build\nextraordinary websites.",
     opacityIn: [0.05, 0.15],
     opacityOut: [0.22, 0.28],
     translateIn: [0.05, 0.15],

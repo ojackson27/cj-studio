@@ -256,17 +256,11 @@ export default function WorkGallery() {
 
                 {/* Quote */}
                 {selected.quote && (
-                  <blockquote
-                    className="mt-8 border-l-4 pl-6"
-                    style={{
-                      borderImage:
-                        "linear-gradient(to bottom, #8a6cff, #27d7c4) 1",
-                    }}
-                  >
-                    <p className="text-[17px] italic text-white/80">
+                  <blockquote className="mt-8 pt-6 border-t border-white/[0.10]">
+                    <p className="text-[17px] italic text-white/80 leading-relaxed">
                       &ldquo;{selected.quote.text}&rdquo;
                     </p>
-                    <footer className="text-[13px] text-white/40 mt-2">
+                    <footer className="text-[13px] text-white/40 mt-3">
                       {selected.quote.author}
                     </footer>
                   </blockquote>

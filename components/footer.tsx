@@ -3,7 +3,7 @@ import Logo from "./logo";
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#0c0e14" }} className="py-8 px-6">
+    <footer className="py-8 px-6 bg-black/50 backdrop-blur-md border-t border-white/[0.06]">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <Link href="/" aria-label="CJ Studio home">
           <Logo variant="horizontal" height={22} onDark />

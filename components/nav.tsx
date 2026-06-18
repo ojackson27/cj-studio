@@ -39,7 +39,7 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
     <motion.header
       initial={reduce ? false : { opacity: 0, y: -12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerClass}`}
     >
       {/* Gradient accent line — appears on scroll in light mode */}
@@ -54,8 +54,9 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <motion.div
-          whileHover={reduce ? {} : { scale: 1.03 }}
-          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          whileHover={reduce ? {} : { scale: 1.04 }}
+          whileTap={reduce ? {} : { scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
         >
           <Link href="/" aria-label="CJ Studio home" className="flex items-center gap-2.5 select-none">
             <Logo variant="full" height={30} priority onDark={!onLight} />
@@ -108,12 +109,15 @@ export default function Nav({ onLight = true }: { onLight?: boolean }) {
         </motion.button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — clip-path avoids layout thrash from animating height */}
       <motion.div
         id="mobile-menu"
         initial={false}
-        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
-        transition={{ duration: 0.25 }}
+        animate={{
+          clipPath: open ? "inset(0 0 0 0)" : "inset(0 0 100% 0)",
+          opacity: open ? 1 : 0,
+        }}
+        transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
         className={`md:hidden overflow-hidden backdrop-blur-md border-t ${
           onLight
             ? "bg-white/95 border-gray-100"

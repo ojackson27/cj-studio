@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/lenis-provider";
+import ShaderBackground from "@/components/shader-background";
 
 const fontSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -66,6 +67,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <ShaderBackground />
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

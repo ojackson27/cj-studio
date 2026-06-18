@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: "#0c0e14" }}>
+    <div className="min-h-screen flex flex-col">
       <Nav onLight={false} />
       <main id="main-content" className="flex-1 flex flex-col justify-center pt-16 px-6 pb-12">
         <div className="max-w-6xl mx-auto w-full py-10">

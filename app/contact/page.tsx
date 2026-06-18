@@ -32,13 +32,16 @@ const contacts = [
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: "#0c0e14" }}>
+    <div className="min-h-screen flex flex-col">
       <Nav onLight={false} />
       <main id="main-content" className="flex-1 pt-24 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="mb-12">
-            <p className="text-[13px] uppercase tracking-[0.18em] text-white/40 mb-4 font-medium">
+            <p
+              className="text-[11px] uppercase mb-4"
+              style={{ fontFamily: "var(--font-jetbrains-mono), monospace", letterSpacing: "0.3em", color: "rgba(255,255,255,0.40)" }}
+            >
               Get in touch
             </p>
             <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-bold tracking-tight text-white leading-[1.05] mb-4">
