@@ -55,7 +55,7 @@ export default function DarkWorkCarousel() {
     offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0.04, 0.96], ["0%", "-66.667%"]);
+  const x = useTransform(scrollYProgress, [0.04, 0.96], ["0%", `-${((projects.length - 1) / projects.length) * 100}%`]);
   const labelOpacity = useTransform(scrollYProgress, [0, 0.06], [0, 1]);
   const scaleX = useTransform(scrollYProgress, [0.04, 0.96], [0, 1]);
 
