@@ -1,13 +1,13 @@
 "use client";
 
 import Nav from "@/components/nav";
-import CinematicSection from "@/components/cinematic-section";
+import HeroSection from "@/components/hero-section";
 
 export default function HomeClient() {
   return (
     <>
       <Nav onLight={false} />
-      <CinematicSection />
+      <HeroSection />
     </>
   );
 }
