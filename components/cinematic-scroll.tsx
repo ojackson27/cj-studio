@@ -159,6 +159,19 @@ export default function CinematicScroll({
         {/* Canvas */}
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
+        {/* Higgsfield abstract geo video — blends over canvas */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          style={{ mixBlendMode: "screen", opacity: 0.55 }}
+        >
+          <source src="/assets/hero-geo.mp4" type="video/mp4" />
+        </video>
+
         {/* Loading bar */}
         {!loaded && (
           <div
