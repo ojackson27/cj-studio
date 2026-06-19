@@ -1,21 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function HeroSection() {
-  const typographyRef = useRef<HTMLDivElement>(null);
+  const [dropped, setDropped] = useState(false);
 
   useEffect(() => {
-    const el = typographyRef.current;
-    if (!el) return;
-    // Double rAF: guarantees browser paints initial off-screen state before animating
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        el.style.transform = "translate(-50%, -50%)";
-        el.style.opacity = "1";
-      });
-    });
+    // Small delay ensures initial off-screen paint before transition fires
+    const id = setTimeout(() => setDropped(true), 80);
+    return () => clearTimeout(id);
   }, []);
 
   return (
@@ -40,21 +34,22 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Layer 2 — Typography, z-index: 2. Starts off-screen above, drops to center. */}
+      {/* Layer 2 — Typography, z-index: 2.
+          Initial: off-screen above + invisible.
+          On load: drops to center via premium cubic-bezier. */}
       <div
-        ref={typographyRef}
         aria-label="CJ Creative Studio"
         style={{
           position: "absolute",
-          top: "50%",
+          top: "42%",
           left: "50%",
           zIndex: 2,
-          /* Initial state: off-screen above + invisible */
-          transform: "translate(-50%, calc(-50% - 100vh))",
-          opacity: 0,
-          /* Premium heavy drop: fast in, silky deceleration */
+          transform: dropped
+            ? "translate(-50%, -50%)"
+            : "translate(-50%, calc(-50% - 100vh))",
+          opacity: dropped ? 1 : 0,
           transition:
-            "transform 1.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease",
+            "transform 1.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease",
           textAlign: "center",
           whiteSpace: "nowrap",
           userSelect: "none",
@@ -88,7 +83,9 @@ export default function HeroSection() {
         </p>
       </div>
 
-      {/* Layer 3 — Foreground mask (blocks), z-index: 3. mix-blend-mode drops white bg. */}
+      {/* Layer 3 — Foreground mask (blocks), z-index: 3.
+          mix-blend-mode:multiply drops white bg, dark blocks remain as mask.
+          pointer-events:none so the text below stays interactive. */}
       <div
         aria-hidden="true"
         style={{
