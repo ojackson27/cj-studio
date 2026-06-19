@@ -1,95 +1,113 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function HeroSection() {
-  const [ready, setReady] = useState(false);
+  const typographyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const t = setTimeout(() => setReady(true), 200);
-    return () => clearTimeout(t);
+    const el = typographyRef.current;
+    if (!el) return;
+    // Double rAF: guarantees browser paints initial off-screen state before animating
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        el.style.transform = "translate(-50%, -50%)";
+        el.style.opacity = "1";
+      });
+    });
   }, []);
 
   return (
     <section
-      className="relative h-screen overflow-hidden"
       aria-label="Hero"
-      style={{ background: "#8ec8e8" }}
+      style={{
+        position: "relative",
+        height: "100vh",
+        overflow: "hidden",
+        background: "#8ec8e8",
+      }}
     >
-      {/* Layer 1: Sky */}
-      <Image
-        src="/assets/hero-sky.png"
-        alt=""
-        fill
-        priority
-        className="object-cover object-center"
-        style={{ zIndex: 0 }}
-        aria-hidden="true"
-      />
-
-      {/* Layer 2: Text — falls from above, sits between sky and blocks */}
-      <div
-        className="absolute inset-0 flex items-start justify-center"
-        style={{ zIndex: 1, paddingTop: "18vh" }}
-        aria-label="CJ Creative Studio"
-      >
-        <motion.div
-          initial={{ y: "-90vh", opacity: 1 }}
-          animate={ready ? { y: 0, opacity: 1 } : {}}
-          transition={{
-            type: "spring",
-            stiffness: 55,
-            damping: 16,
-            delay: 0.1,
-          }}
-          className="text-center select-none"
-        >
-          <p
-            style={{
-              fontFamily: "var(--font-inter), Inter, sans-serif",
-              fontSize: "clamp(3.5rem, 10vw, 9rem)",
-              fontWeight: 400,
-              color: "#ffffff",
-              lineHeight: 1.0,
-              letterSpacing: "-0.02em",
-              margin: 0,
-              textShadow: "0 2px 40px rgba(0,0,0,0.15)",
-            }}
-          >
-            CJ Creative
-          </p>
-          <p
-            style={{
-              fontFamily: "var(--font-inter), Inter, sans-serif",
-              fontSize: "clamp(3.5rem, 10vw, 9rem)",
-              fontWeight: 800,
-              color: "#ffffff",
-              lineHeight: 1.0,
-              letterSpacing: "-0.02em",
-              margin: 0,
-              textShadow: "0 2px 40px rgba(0,0,0,0.15)",
-            }}
-          >
-            Studio.
-          </p>
-        </motion.div>
+      {/* Layer 1 — Background sky, z-index: 1 */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 1 }}>
+        <Image
+          src="/assets/hero-sky.png"
+          alt=""
+          fill
+          priority
+          style={{ objectFit: "cover", objectPosition: "center" }}
+          aria-hidden="true"
+        />
       </div>
 
-      {/* Layer 3: Blocks foreground — white bg drops out via multiply, blocks mask the text */}
+      {/* Layer 2 — Typography, z-index: 2. Starts off-screen above, drops to center. */}
       <div
-        className="absolute inset-0"
-        style={{ zIndex: 2 }}
+        ref={typographyRef}
+        aria-label="CJ Creative Studio"
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          zIndex: 2,
+          /* Initial state: off-screen above + invisible */
+          transform: "translate(-50%, calc(-50% - 100vh))",
+          opacity: 0,
+          /* Premium heavy drop: fast in, silky deceleration */
+          transition:
+            "transform 1.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease",
+          textAlign: "center",
+          whiteSpace: "nowrap",
+          userSelect: "none",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "var(--font-inter), Inter, sans-serif",
+            fontSize: "clamp(3rem, 9vw, 8.5rem)",
+            fontWeight: 400,
+            color: "#ffffff",
+            lineHeight: 1.0,
+            letterSpacing: "-0.025em",
+            margin: 0,
+          }}
+        >
+          CJ Creative
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-inter), Inter, sans-serif",
+            fontSize: "clamp(3rem, 9vw, 8.5rem)",
+            fontWeight: 800,
+            color: "#ffffff",
+            lineHeight: 1.0,
+            letterSpacing: "-0.025em",
+            margin: 0,
+          }}
+        >
+          Studio.
+        </p>
+      </div>
+
+      {/* Layer 3 — Foreground mask (blocks), z-index: 3. mix-blend-mode drops white bg. */}
+      <div
         aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 3,
+          pointerEvents: "none",
+        }}
       >
         <Image
           src="/assets/hero-blocks.png"
           alt=""
           fill
           priority
-          className="object-cover object-bottom"
-          style={{ mixBlendMode: "multiply" }}
+          style={{
+            objectFit: "cover",
+            objectPosition: "bottom",
+            mixBlendMode: "multiply",
+          }}
         />
       </div>
     </section>
