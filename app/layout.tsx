@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/lenis-provider";
 import ShaderBackground from "@/components/shader-background";
@@ -16,6 +16,13 @@ const fontSpaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-space-grotesk",
+});
+
+const fontInter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "800"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 const fontMono = JetBrains_Mono({
@@ -58,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontSans.variable} ${fontSpaceGrotesk.variable} ${fontMono.variable} h-full antialiased`}
+      className={`${fontSans.variable} ${fontSpaceGrotesk.variable} ${fontMono.variable} ${fontInter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <a
