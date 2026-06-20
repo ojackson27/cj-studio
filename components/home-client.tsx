@@ -1,117 +1,203 @@
 "use client";
 
 import Link from "next/link";
+import { useRef } from "react";
+import { motion, useReducedMotion, useInView } from "motion/react";
 import EditorialNav from "@/components/editorial-nav";
+
+// ease-out-expo — decisive, editorial
+const EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const capabilities = [
   {
-    index: "01",
     title: "Identity Systems",
     body: "Naming, visual logic, art direction, and reusable brand systems.",
   },
   {
-    index: "02",
     title: "Digital Interfaces",
     body: "Premium product pages, editorial websites, and interaction systems.",
   },
   {
-    index: "03",
     title: "Design Operations",
     body: "Component libraries, launch systems, and governance for scale.",
   },
 ];
 
+/**
+ * Fade + rise on scroll into view.
+ * Immediately visible (no opacity gate) when prefers-reduced-motion is set.
+ */
+function Reveal({
+  children,
+  delay = 0,
+  className,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={reduced ? false : { opacity: 0, y: 20 }}
+      animate={
+        reduced
+          ? {}
+          : inView
+          ? { opacity: 1, y: 0 }
+          : { opacity: 0, y: 20 }
+      }
+      transition={{ duration: 0.65, ease: EXPO, delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export default function HomeClient() {
+  const reduced = useReducedMotion();
+
   return (
     <div className="bg-white">
       <EditorialNav />
 
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="bg-[#f0ece3] pt-14" aria-label="Hero">
+      <section className="bg-white pt-14" aria-label="Hero">
         <div className="px-6 pt-12 pb-10">
-          {/* Kicker row */}
-          <div className="flex items-center justify-between mb-10">
-            <span className="text-[10px] tracking-[0.22em] uppercase text-gray-400">
+          {/* Kicker row — fades in on mount */}
+          <motion.div
+            className="flex items-center justify-between mb-10"
+            initial={reduced ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.55, ease: EXPO, delay: 0.1 }}
+          >
+            <span
+              className="text-[11px] uppercase tracking-[0.3em]"
+              style={{ fontFamily: "var(--font-jetbrains-mono)", color: "rgba(12,14,20,0.38)" }}
+            >
               Boutique Digital Design Agency
             </span>
-            <span className="text-[10px] tracking-[0.22em] uppercase text-gray-400">
+            <span
+              className="text-[11px] uppercase tracking-[0.3em]"
+              style={{ fontFamily: "var(--font-jetbrains-mono)", color: "rgba(12,14,20,0.38)" }}
+            >
               United Kingdom
             </span>
-          </div>
+          </motion.div>
 
-          {/* Display heading */}
+          {/* Display heading — each line clips up from below */}
           <h1
-            className="text-[clamp(3.2rem,9.5vw,8.5rem)] leading-[0.9] text-[#0d0d0d] mb-8"
+            className="text-[clamp(2.5rem,6vw,5rem)] leading-[0.92] tracking-[-0.03em] text-[#0c0e14] mb-8"
             style={{ fontFamily: "var(--font-archivo-black)" }}
           >
-            Quiet systems
-            <br />
-            for exacting
-            <br />
-            digital brands.
+            {["Quiet systems", "for exacting", "digital brands."].map(
+              (line, i) => (
+                <span key={line} className="block overflow-hidden">
+                  <motion.span
+                    className="block"
+                    initial={reduced ? false : { opacity: 0, y: "0.3em" }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.7,
+                      ease: EXPO,
+                      delay: 0.2 + i * 0.1,
+                    }}
+                  >
+                    {line}
+                  </motion.span>
+                </span>
+              )
+            )}
           </h1>
 
-          {/* Rule + body */}
-          <div className="flex items-start gap-8 mt-2">
-            <div className="w-10 border-t-[2px] border-[#0d0d0d] mt-2 shrink-0" />
-            <p className="max-w-[340px] text-[15px] leading-[1.65] text-gray-600 font-serif">
+          {/* Rule + body — fades in after headline */}
+          <motion.div
+            className="flex items-start gap-8 mt-2"
+            initial={reduced ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: EXPO, delay: 0.55 }}
+          >
+            <div className="w-10 border-t-[2px] border-[#0c0e14] mt-2 shrink-0" />
+            <p className="max-w-[340px] text-[15px] leading-[1.65]" style={{ color: "rgba(12,14,20,0.55)" }}>
               CJ Studio builds refined identities, product interfaces, and web
               systems for founders and teams who value restraint, clarity, and
               craft.
             </p>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Media placeholder */}
-        <div
-          className="mx-6 mb-0 border border-gray-300 bg-[#eae7df] relative"
+        {/* Media placeholder — rises in last */}
+        <motion.div
+          className="mx-6 mb-0 border border-gray-100 bg-[#f5f5f5] relative"
           style={{ height: "clamp(240px, 33vw, 460px)" }}
+          initial={reduced ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: EXPO, delay: 0.68 }}
         >
-          <span className="absolute top-4 left-5 text-[9px] tracking-[0.22em] uppercase text-gray-400">
+          <span
+            className="absolute top-4 left-5 text-[11px] uppercase tracking-[0.3em]"
+            style={{ fontFamily: "var(--font-jetbrains-mono)", color: "rgba(12,14,20,0.38)" }}
+          >
             Reserved Media Plane
           </span>
           <div
-            className="absolute left-4 right-4 border-t border-[#8ab4cc]"
+            className="absolute left-4 right-4 border-t border-gray-200"
             style={{ top: "58%" }}
           />
-          <span className="absolute bottom-4 left-5 text-[9px] tracking-[0.22em] uppercase text-gray-400">
+          <span
+            className="absolute bottom-4 left-5 text-[11px] uppercase tracking-[0.3em]"
+            style={{ fontFamily: "var(--font-jetbrains-mono)", color: "rgba(12,14,20,0.38)" }}
+          >
             Future 3D Scroll Animation Asset
           </span>
-        </div>
+        </motion.div>
       </section>
 
       {/* ── Methodology / Capabilities ───────────────────────── */}
-      <section className="bg-white px-6 py-28" aria-label="Methodology and capabilities">
+      <section
+        className="bg-white px-6 py-28"
+        aria-label="Methodology and capabilities"
+      >
         <div className="max-w-[1280px] mx-auto">
           {/* Header row */}
-          <div className="grid grid-cols-[auto_1fr] gap-x-8 items-start mb-16">
-            <span className="text-[10px] tracking-[0.22em] uppercase text-gray-400 mt-2 whitespace-nowrap">
-              Methodology / Capabilities
+          <Reveal className="grid grid-cols-[auto_1fr] gap-x-8 items-start mb-16">
+            <span
+              className="text-[11px] uppercase tracking-[0.3em] mt-2 whitespace-nowrap"
+              style={{ fontFamily: "var(--font-jetbrains-mono)", color: "rgba(12,14,20,0.38)" }}
+            >
+              Capabilities
             </span>
             <h2
-              className="text-[clamp(2.8rem,6.5vw,6rem)] leading-[0.9] text-[#0d0d0d] text-right"
+              className="text-[clamp(1.75rem,4.5vw,3rem)] leading-[1.05] tracking-[-0.025em] text-[#0c0e14] text-right"
               style={{ fontFamily: "var(--font-archivo-black)" }}
             >
               A precise framework, without the ceremony.
             </h2>
-          </div>
+          </Reveal>
 
-          {/* Capability cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 border border-gray-200">
-            {capabilities.map(({ index, title, body }) => (
-              <div
-                key={index}
-                className="border-b md:border-b-0 md:border-r border-gray-200 last:border-r-0 p-8 flex flex-col justify-between"
-                style={{ minHeight: "220px" }}
-              >
-                <span className="text-[10px] tracking-[0.22em] text-[#5b9fd6]">{index}</span>
-                <div className="flex flex-col gap-2 mt-auto">
-                  <h3 className="text-[17px] font-bold italic text-[#1a1a1a] font-serif">
+          {/* Capabilities — staggered entrance, no numbered markers */}
+          <div className="border-t border-gray-100">
+            {capabilities.map(({ title, body }, i) => (
+              <Reveal key={title} delay={i * 0.08}>
+                <div className="border-b border-gray-100 py-8 flex flex-col md:flex-row md:items-start md:gap-16">
+                  <h3
+                    className="text-[17px] font-semibold tracking-[-0.01em] text-[#0c0e14] md:w-56 shrink-0 mb-2 md:mb-0"
+                  >
                     {title}
                   </h3>
-                  <p className="text-[14px] leading-relaxed text-gray-500">{body}</p>
+                  <p
+                    className="text-[15px] leading-[1.65] max-w-[44ch]"
+                    style={{ color: "rgba(12,14,20,0.55)" }}
+                  >
+                    {body}
+                  </p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -121,33 +207,41 @@ export default function HomeClient() {
       <section className="bg-white px-6 pb-28" aria-label="Selected work">
         <div className="max-w-[1280px] mx-auto">
           {/* Header row */}
-          <div className="grid grid-cols-[auto_1fr] gap-x-8 items-start mb-14">
-            <span className="text-[10px] tracking-[0.22em] uppercase text-gray-400 mt-2 whitespace-nowrap">
+          <Reveal className="grid grid-cols-[auto_1fr] gap-x-8 items-start mb-14">
+            <span
+              className="text-[11px] uppercase tracking-[0.3em] mt-2 whitespace-nowrap"
+              style={{ fontFamily: "var(--font-jetbrains-mono)", color: "rgba(12,14,20,0.38)" }}
+            >
               Selected Work
             </span>
             <h2
-              className="text-[clamp(2.8rem,6.5vw,6rem)] leading-[0.9] text-[#0d0d0d] text-right"
+              className="text-[clamp(1.75rem,4.5vw,3rem)] leading-[1.05] tracking-[-0.025em] text-[#0c0e14] text-right"
               style={{ fontFamily: "var(--font-archivo-black)" }}
             >
               Case-study frames for quiet, high-value launches.
             </h2>
-          </div>
+          </Reveal>
 
           {/* Carousel placeholder */}
-          <div
-            className="bg-[#f0ece3] flex items-center justify-center"
-            style={{ height: "clamp(280px, 36vw, 500px)" }}
-          >
-            <span className="text-[13px] text-gray-400 tracking-wide">
-              Scrolling carousel of portfolio work
-            </span>
-          </div>
+          <Reveal delay={0.1}>
+            <div
+              className="bg-[#f5f5f5] border border-gray-100 flex items-center justify-center"
+              style={{ height: "clamp(280px, 36vw, 500px)" }}
+            >
+              <span
+                className="text-[11px] uppercase tracking-[0.3em]"
+                style={{ fontFamily: "var(--font-jetbrains-mono)", color: "rgba(12,14,20,0.38)" }}
+              >
+                Portfolio work coming soon
+              </span>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── Footer ───────────────────────────────────────────── */}
       <footer className="bg-[#0a0a0a]" aria-label="Site footer">
-        <div className="px-4 pt-10 overflow-hidden">
+        <Reveal className="px-4 pt-10 overflow-hidden">
           <p
             className="text-white leading-[0.85] select-none uppercase"
             style={{
@@ -155,12 +249,18 @@ export default function HomeClient() {
               fontSize: "clamp(3rem, 14vw, 16rem)",
             }}
           >
-            <span style={{ display: "block", whiteSpace: "nowrap" }}>CJ Creative</span>
-            <span style={{ display: "block", whiteSpace: "nowrap" }}>Studio</span>
+            <span style={{ display: "block", whiteSpace: "nowrap" }}>
+              CJ Creative
+            </span>
+            <span style={{ display: "block", whiteSpace: "nowrap" }}>
+              Studio
+            </span>
           </p>
-        </div>
+        </Reveal>
         <div className="px-6 py-5 flex items-center justify-between border-t border-white/[0.08] mt-6">
-          <span className="text-[11px] text-white/40 tracking-wide">© 2026</span>
+          <span className="text-[11px] text-white/40 tracking-wide">
+            © 2026
+          </span>
           <div className="hidden md:flex gap-6">
             {[
               { label: "Work", href: "/work" },
@@ -172,13 +272,15 @@ export default function HomeClient() {
               <Link
                 key={label}
                 href={href}
-                className="text-[11px] text-white/30 hover:text-white/60 transition-colors tracking-wide"
+                className="text-[11px] text-white/30 transition-[color] duration-[180ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:text-white/60 tracking-wide"
               >
                 {label}
               </Link>
             ))}
           </div>
-          <span className="text-[11px] text-white/40 tracking-wide">London, United Kingdom</span>
+          <span className="text-[11px] text-white/40 tracking-wide">
+            London, United Kingdom
+          </span>
         </div>
       </footer>
     </div>

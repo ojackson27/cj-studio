@@ -109,12 +109,12 @@ export default function WorkPage() {
             {projects.map((project) => (
               <article
                 key={project.index}
-                className="bg-white flex flex-col"
+                className="bg-white flex flex-col group"
                 aria-label={`${project.name} — ${project.category}`}
               >
                 {/* Image placeholder */}
                 <div
-                  className="bg-[#f0ece3] w-full relative"
+                  className="bg-[#f0ece3] w-full relative overflow-hidden transition-[background-color] duration-[200ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-[#e5e0d6]"
                   style={{ aspectRatio: "4/3" }}
                 >
                   <span className="absolute top-4 left-5 text-[9px] tracking-[0.22em] uppercase text-gray-400">
@@ -163,7 +163,7 @@ export default function WorkPage() {
           <div className="flex justify-end">
             <Link
               href="/contact"
-              className="border border-gray-900 px-6 py-3 text-[11px] tracking-widest uppercase text-[#0d0d0d] hover:bg-[#0d0d0d] hover:text-white transition-colors"
+              className="border border-gray-900 px-6 py-3 text-[11px] tracking-widest uppercase text-[#0d0d0d] transition-[background-color,color,transform] duration-[160ms] ease-out active:scale-[0.97] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#0d0d0d] [@media(hover:hover)_and_(pointer:fine)]:hover:text-white"
             >
               Get in touch →
             </Link>

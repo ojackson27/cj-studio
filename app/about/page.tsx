@@ -106,7 +106,7 @@ export default function AboutPage() {
               {founders.map(({ initials, name, role, bio }) => (
                 <div
                   key={initials}
-                  className="border border-gray-200 p-8 flex flex-col gap-6"
+                  className="border border-gray-200 p-8 flex flex-col gap-6 transition-[border-color] duration-[200ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:border-gray-400"
                 >
                   {/* Avatar placeholder */}
                   <div
@@ -214,7 +214,7 @@ export default function AboutPage() {
               <Link
                 key={label}
                 href={href}
-                className="text-[11px] text-white/30 hover:text-white/60 transition-colors tracking-wide"
+                className="text-[11px] text-white/30 transition-[color] duration-[180ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:text-white/60 tracking-wide"
               >
                 {label}
               </Link>

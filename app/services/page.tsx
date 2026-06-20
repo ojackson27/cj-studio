@@ -103,7 +103,7 @@ export default function ServicesPage() {
             {services.map(({ index, name, tagline, deliverables, price }) => (
               <div
                 key={index}
-                className="border-b border-gray-200 py-12 px-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-start"
+                className="border-b border-gray-200 py-12 px-8 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-start transition-[background-color] duration-[200ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:bg-gray-50"
               >
                 {/* Left: number + name + tagline */}
                 <div className="flex flex-col gap-3">
@@ -194,7 +194,7 @@ export default function ServicesPage() {
           <div className="flex justify-end">
             <Link
               href="/contact"
-              className="inline-block border border-[#0d0d0d] px-8 py-4 text-[13px] tracking-[0.12em] uppercase text-[#0d0d0d] hover:bg-[#0d0d0d] hover:text-white transition-colors"
+              className="inline-block border border-[#0d0d0d] px-8 py-4 text-[13px] tracking-[0.12em] uppercase text-[#0d0d0d] transition-[background-color,color,transform] duration-[160ms] ease-out active:scale-[0.97] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#0d0d0d] [@media(hover:hover)_and_(pointer:fine)]:hover:text-white"
             >
               Start a project →
             </Link>
@@ -229,7 +229,7 @@ export default function ServicesPage() {
               <Link
                 key={label}
                 href={href}
-                className="text-[11px] text-white/30 hover:text-white/60 transition-colors tracking-wide"
+                className="text-[11px] text-white/30 transition-[color] duration-[180ms] ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:text-white/60 tracking-wide"
               >
                 {label}
               </Link>
