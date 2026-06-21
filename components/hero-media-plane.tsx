@@ -187,7 +187,7 @@ export default function HeroMediaPlane() {
         {/* Foreground mask — transparent property cutout */}
         <div className="absolute inset-0 z-30 w-full h-full pointer-events-none">
           <img
-            src="/assets/higgsfield-foreground-mask%20new.png"
+            src="/assets/higgsfield-foreground-mask-new.png"
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
