@@ -1,12 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import React, { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const projects = [
   {
@@ -33,69 +29,91 @@ const projects = [
 ];
 
 export default function PortfolioCarousel() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", dragFree: true });
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(true);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
 
   useEffect(() => {
-    const track = trackRef.current;
-    const container = scrollContainerRef.current;
-    if (!track || !container) return;
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
-    const ctx = gsap.context(() => {
-      const totalWidth = track.scrollWidth;
-      const viewportWidth = window.innerWidth;
-      const xScrollAmount = -(totalWidth - viewportWidth);
-
-      gsap.to(track, {
-        x: xScrollAmount,
-        ease: "none",
-        scrollTrigger: {
-          trigger: container,
-          pin: true,
-          scrub: 1,
-          start: "top top",
-          end: () => `+=${totalWidth}`,
-          invalidateOnRefresh: true,
-        },
-      });
-    }, container);
-
-    return () => ctx.revert();
-  }, []);
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   return (
-    <div
-      ref={scrollContainerRef}
-      className="relative w-full bg-[#121212] overflow-hidden"
+    <section
+      className="w-full bg-[#121212] py-20 px-8"
       aria-label="Selected work"
+      aria-roledescription="carousel"
     >
-      <div className="h-screen flex items-center justify-start overflow-hidden">
-        <div
-          ref={trackRef}
-          className="flex h-full items-center pl-8 pr-[20vw] gap-12 will-change-transform"
-        >
-          {/* Intro panel */}
-          <div className="w-[35vw] flex-shrink-0 flex flex-col justify-between h-[65vh] pr-12 border-r border-neutral-800">
-            <div>
-              <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-500 font-mono block mb-4">
-                Selected Work // Case Studies
-              </span>
-              <h2 className="text-4xl font-light text-neutral-100 tracking-tight leading-tight">
-                Refined executions for digital platforms.
-              </h2>
-            </div>
-            <p className="text-xs text-neutral-400 font-mono max-w-[280px] leading-relaxed">
-              [ SCROLL TO EXPLORE ARCHIVE ]
-            </p>
-          </div>
+      {/* Header row */}
+      <div className="max-w-7xl mx-auto mb-12 flex items-end justify-between">
+        <div>
+          <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-500 font-mono block mb-3">
+            Selected Work // Case Studies
+          </span>
+          <h2 className="text-3xl md:text-4xl font-light text-neutral-100 tracking-tight leading-tight max-w-xs">
+            Refined executions for digital platforms.
+          </h2>
+        </div>
 
-          {/* Project panels */}
+        {/* Prev / Next buttons */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={scrollPrev}
+            disabled={!canScrollPrev}
+            aria-label="Previous project"
+            className={[
+              "w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-200",
+              canScrollPrev
+                ? "border-neutral-600 text-neutral-300 hover:border-neutral-400 hover:text-white"
+                : "border-neutral-800 text-neutral-700 cursor-not-allowed",
+            ].join(" ")}
+          >
+            <ArrowLeft size={16} />
+          </button>
+          <button
+            onClick={scrollNext}
+            disabled={!canScrollNext}
+            aria-label="Next project"
+            className={[
+              "w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-200",
+              canScrollNext
+                ? "border-neutral-600 text-neutral-300 hover:border-neutral-400 hover:text-white"
+                : "border-neutral-800 text-neutral-700 cursor-not-allowed",
+            ].join(" ")}
+          >
+            <ArrowRight size={16} />
+          </button>
+        </div>
+      </div>
+
+      {/* Embla viewport */}
+      <div className="max-w-7xl mx-auto overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-6">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="w-[70vw] md:w-[50vw] h-[65vh] flex-shrink-0 flex flex-col justify-between group"
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${project.id} of ${projects.length}: ${project.title}`}
+              className="min-w-0 shrink-0 basis-[85vw] md:basis-[55%] lg:basis-[42%]"
             >
-              <div className="w-full h-[85%] bg-neutral-900 overflow-hidden relative border border-neutral-800 transition-colors duration-500 group-hover:border-neutral-700">
+              {/* Media */}
+              <div className="w-full aspect-[4/3] bg-neutral-900 overflow-hidden relative border border-neutral-800 group transition-colors duration-500 hover:border-neutral-700">
                 <video
                   autoPlay
                   loop
@@ -107,20 +125,21 @@ export default function PortfolioCarousel() {
                 </video>
               </div>
 
+              {/* Meta */}
               <div className="flex justify-between items-end pt-4 font-mono text-[11px]">
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-3 items-center">
                   <span className="text-neutral-500">[{project.id}]</span>
                   <span className="text-neutral-200 font-sans text-sm font-medium tracking-tight">
                     {project.title}
                   </span>
                 </div>
-                <div className="text-neutral-400">{project.category}</div>
+                <div className="text-neutral-400 hidden md:block">{project.category}</div>
                 <div className="text-neutral-500">{project.year}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,8 +1,41 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function HeroMediaPlane() {
+  const wordmarkRef = useRef<HTMLHeadingElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (!wordmarkRef.current || !sectionRef.current) return;
+      gsap.fromTo(
+        wordmarkRef.current,
+        { y: "20%" },
+        {
+          y: "-25%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.2,
+          },
+        }
+      );
+    });
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       className="relative w-full h-screen bg-[#FBFBFB] flex flex-col justify-between overflow-hidden"
       aria-label="Hero"
     >
@@ -50,7 +83,8 @@ export default function HeroMediaPlane() {
         {/* LAYER 2: Sliding Typography (middle of sandwich — GSAP target) */}
         <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
           <h2
-            className="text-[14vw] font-black tracking-tighter text-neutral-900 uppercase opacity-90 select-none transform translate-y-[20%]"
+            ref={wordmarkRef}
+            className="text-[14vw] font-black tracking-tighter text-neutral-900 uppercase opacity-90 select-none"
             aria-hidden="true"
           >
             CJ STUDIO
