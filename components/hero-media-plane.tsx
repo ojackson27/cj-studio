@@ -46,6 +46,9 @@ export default function HeroMediaPlane() {
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // Force load the video so duration + seeking work
+    video.load();
+
     // — initial load reveal for chapter 0
     if (!reduced) {
       const p0 = panelRefs.current[0];
@@ -64,19 +67,18 @@ export default function HeroMediaPlane() {
     }
 
     const ctx = gsap.context(() => {
-      // GSAP pin: section stays fixed for 3x its height of scroll
       const st = ScrollTrigger.create({
         trigger: section,
         start: "top top",
         end: "+=3000",
         pin: true,
-        scrub: 1,
+        scrub: 0.5,
         invalidateOnRefresh: true,
         onUpdate(self) {
           const p = self.progress;
 
-          // — scrub video currentTime
-          if (video.readyState >= 2 && video.duration) {
+          // — scrub video: always attempt, duration will be valid once metadata loads
+          if (video.duration && !isNaN(video.duration)) {
             video.currentTime = p * video.duration;
           }
 
@@ -257,13 +259,13 @@ export default function HeroMediaPlane() {
           </h2>
         </div>
 
-        {/* Foreground mask */}
+        {/* Foreground mask — transparent cutout sits over video */}
         <div className="absolute inset-0 z-30 pointer-events-none">
           <img
             src="/assets/higgsfield-foreground-mask-new.png"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover mix-blend-multiply"
           />
         </div>
       </div>
